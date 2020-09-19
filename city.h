@@ -1,35 +1,35 @@
 #ifndef CITY_H
 #define CITY_H
 
-#include <QMainWindow> // <|
-#include <QObject>     // <+----- I dunno maybe we'll need them...
-#include <QWidget>     // <|
+#include <vector>
 #include <QString>
-//#include "food.h"
+#include "food.h"
 
 class city
 {
 public:
     city() : name{ "Defualt City" }, parentCountry{ "Default Country" } {}
+    city(QString name, QString parentCountry) : name{ name }, parentCountry{ parentCountry } {}
     city(const city& other);
 
     // getters
 
     QString getName() const;
     QString getParentCountry() const;
-//    food* getFoodItem( int index );   // uncomment when food exists :) You can still write it by looking at the UML diagram tho
+    food* getFood( int index ) const;   // uncomment when food exists :) You can still write it by looking at the UML diagram tho
+    int getNumFood() const;
 
 
     // setters
 
-    void setName();
-    void setParentCoutnry();
-    void setFood(int index);
+    void setName(QString name);
+    void setParentCountry(QString parentCountry);
+    void addFoodItem(food* foodItem);
 
 private:
     QString name;
     QString parentCountry;
-//    std::vector<food*> foodItems; // uncomment when food exists :)
+    std::vector<food*> foodItems; // uncomment when food exists :)
 };
 
 #endif // CITY_H
