@@ -7,6 +7,11 @@ city::city(const city& other) : name{ other.name }, parentCountry{ other.parentC
             this->foodItems.push_back(other.foodItems[i]);             */
 }
 
+~city()
+{
+        
+}
+
 QString city::getName() const 
 {
     return name;
@@ -31,4 +36,9 @@ void addFoodItem(food foodItem)
 {
         foodItems.pushBack(foodItem);
         // or whatever the funtion call would be
+}
+
+food* getFood(int index)
+{
+                return foodItems.at(index);
 }
