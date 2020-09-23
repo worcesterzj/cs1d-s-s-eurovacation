@@ -5,7 +5,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    // START OF DEBUG STUFF!
 
+// Cities
     cities.push_back(new city("Amsterdam", "The Netherlands"));
     cities.push_back(new city("Berlin", "Germany"));
     cities.push_back(new city("Brussels", "Belgium"));
@@ -20,15 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     cities.push_back(new city("Stockhome", "Sweden"));
     cities.push_back(new city("Vienna", "Austria"));
 
-// Fun stuff
-
-    cities.push_back(new city("Waterdeep", "Waterdeep"));
-    cities[13]->addFoodItem(new food("Quipper", 56.37));
-    cities[13]->addFoodItem(new food("Luiren Spring Cheese", 356.97));
-    cities[13]->addFoodItem(new food("Tart", 3.00));
-    cities[13]->addFoodItem(new food("Waterdhavian", 698.77));
-    cities[13]->addFoodItem(new food("Blackbread", 3.00));
-
+// Food Items
     cities[0]->addFoodItem(new food("Stroopwafel", 5.76));
     cities[0]->addFoodItem(new food("Thick Dutch Fries", 3.21));
     cities[0]->addFoodItem(new food("Kibbeling", 8.65));
@@ -89,6 +83,8 @@ MainWindow::MainWindow(QWidget *parent)
     cities[12]->addFoodItem(new food("Kaiserschmarrn", 7.53));
     cities[12]->addFoodItem(new food("Sachertorte", 5.85));
 
+    // END OF DEBUG STUFF!
+
     ui->setupUi(this);
 
     for(int j = 0; j < static_cast<int>(cities.size()); j++)
@@ -127,7 +123,7 @@ void MainWindow::on_listWidget_itemSelectionChanged()
 
     for(int i = 0; i < numFoodz; i++){
         ui->tableWidget->setItem(i, 0, new QTableWidgetItem(cities[index]->getFood(i)->getName()));
-        ui->tableWidget->setItem(i, 1, new QTableWidgetItem("€" + QString::number(cities[index]->getFood(i)->getPrice())));
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[index]->getFood(i)->getPrice(), 'f', 2)));
         ui->tableWidget->resizeColumnToContents(0);
     }
 }
