@@ -10,11 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     city.cpp \
+    food.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     city.h \
+    food.h \
     mainwindow.h
 
 FORMS += \
