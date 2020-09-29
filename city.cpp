@@ -2,7 +2,7 @@
 
 city::city(const city& other) : name{ other.name }, parentCountry{ other.parentCountry } 
 {
-    if(!other.foodItems.empty())                                     // uncomment when food exists :)
+    if(!other.foodItems.empty())
         for(int i = 0; i < static_cast<int>(other.foodItems.size()); i++)
             this->foodItems.push_back(other.foodItems[i]);
 }
@@ -39,5 +39,5 @@ void city::addFoodItem(food* foodItem)
 }
 
 int city::getNumFood() const {
-    return foodItems.size();
+    return static_cast<int>(foodItems.size());
 }

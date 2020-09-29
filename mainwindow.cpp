@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -85,45 +86,85 @@ MainWindow::MainWindow(QWidget *parent)
 
     // END OF DEBUG STUFF!
 
+    // Setup UI
     ui->setupUi(this);
 
+    // Setup other widgets and add them to the stackedWidget.
+    sel = new selectForm(this);
+    pl = new planTripForm(cities, this);
+    pt = new presettripform(cities, this);
+
+    // Signals
+    connect(sel, SIGNAL(planButton_clicked()), this, SLOT(on_recievePlanSignal()));
+    connect(sel, SIGNAL(tripButton_clicked()), this, SLOT(on_recieveTripSignal()));
+    connect(pl, SIGNAL(backButton_clicked()), this, SLOT(on_recieveBackSignal()));
+    connect(pt, SIGNAL(backButton_clicked()), this, SLOT(on_recieveBackSignal()));
+
+    ui->stackedWidget->addWidget(sel);
+    ui->stackedWidget->addWidget(pl);
+    ui->stackedWidget->addWidget(pt);
+    ui->stackedWidget->setCurrentWidget(sel);
+
     for(int j = 0; j < static_cast<int>(cities.size()); j++)
-        ui->listWidget->addItem(cities[j]->getName());
+        ui->cityListWidget->addItem(cities[j]->getName());
 
-    ui->tableWidget->setRowCount(1);
-    ui->tableWidget->setColumnCount(2);
-    ui->tableWidget->horizontalHeader()->setStretchLastSection( true );
+    ui->foodTableWidget->setRowCount(1);
+    ui->foodTableWidget->setColumnCount(2);
+    ui->foodTableWidget->horizontalHeader()->setStretchLastSection( true );
 
-    ui->tableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Food Item"));
-    ui->tableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Price"));
+    ui->foodTableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Food Item"));
+    ui->foodTableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Price"));
 }
 
 MainWindow::~MainWindow()
 {    
+    delete sel;
+    delete pl;
     delete ui;
 }
 
-
-void MainWindow::on_listWidget_itemSelectionChanged()
+void MainWindow::on_cityListWidget_itemSelectionChanged()
 {
     int index = -1;
     for(int i = 0; i < static_cast<int>(cities.size()); i++){
-        if(cities[i]->getName() == ui->listWidget->currentItem()->text())
+        if(cities[i]->getName() == ui->cityListWidget->currentItem()->text())
             index = i;
     }
 
     if(index == -1)
         throw "CITY_NOT_FOUND";
 
-    ui->tableWidget->clearContents();
+    ui->foodTableWidget->clearContents();
 
     int numFoodz = cities[index]->getNumFood();
 
-    ui->tableWidget->setRowCount(numFoodz);
+    ui->foodTableWidget->setRowCount(numFoodz);
 
     for(int i = 0; i < numFoodz; i++){
-        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(cities[index]->getFood(i)->getName()));
-        ui->tableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[index]->getFood(i)->getPrice(), 'f', 2)));
-        ui->tableWidget->resizeColumnToContents(0);
+        ui->foodTableWidget->setItem(i, 0, new QTableWidgetItem(cities[index]->getFood(i)->getName()));
+        ui->foodTableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[index]->getFood(i)->getPrice(), 'f', 2)));
+        ui->foodTableWidget->resizeColumnToContents(0);
     }
+}
+
+void MainWindow::on_recievePlanSignal() {
+    pl->refreshList();
+    ui->stackedWidget->setCurrentWidget(pl);
+}
+
+void MainWindow::on_recieveBackSignal() {
+    ui->stackedWidget->setCurrentWidget(sel);
+}
+
+void MainWindow::on_recieveTripSignal() {
+    // pt->refreshList();
+    ui->stackedWidget->setCurrentWidget(pt);
+}
+
+void MainWindow::on_exitButton_clicked()
+{
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Are you sure?", "Are you sure you want to quit?");
+
+    if (reply == QMessageBox::Yes)
+        QApplication::quit();
 }
