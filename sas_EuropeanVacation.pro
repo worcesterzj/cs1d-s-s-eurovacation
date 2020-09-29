@@ -12,15 +12,24 @@ SOURCES += \
     city.cpp \
     food.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    plantripform.cpp \
+    presettripform.cpp \
+    selectform.cpp
 
 HEADERS += \
     city.h \
     food.h \
-    mainwindow.h
+    mainwindow.h \
+    plantripform.h \
+    presettripform.h \
+    selectform.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    plantripform.ui \
+    presettripform.ui \
+    selectform.ui
 
 TRANSLATIONS += \
     sas_EuropeanVacation_en_US.ts
