@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data/cities">
+        <file>data/cities/cit.sas</file>
+        <file>data/cities/dist.sas</file>
+    </qresource>
+</RCC>

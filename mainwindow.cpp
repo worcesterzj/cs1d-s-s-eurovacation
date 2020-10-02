@@ -121,6 +121,12 @@ MainWindow::~MainWindow()
     delete sel;
     delete pl;
     delete ui;
+
+    for(int i = 0; i < int(cities.size()); i++){
+        city* a = cities.back();
+        cities.pop_back();
+        delete a;
+    }
 }
 
 void MainWindow::on_cityListWidget_itemSelectionChanged()
