@@ -2,10 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
+#include "serializer.h"
 #include "city.h"
 #include "selectform.h"
 #include "plantripform.h"
 #include "presettripform.h"
+#include "parser.h"
+
 #include "login.h"
 
 struct user
@@ -13,6 +17,7 @@ struct user
     QString name;
     bool isAdmin;
 };
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -14,18 +14,22 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    parser.cpp \
     plantripform.cpp \
     presettripform.cpp \
-    selectform.cpp
+    selectform.cpp \
+    serializer.cpp
 
 HEADERS += \
     city.h \
     food.h \
     login.h \
     mainwindow.h \
+    parser.h \
     plantripform.h \
     presettripform.h \
-    selectform.h
+    selectform.h \
+    serializer.h
 
 FORMS += \
     login.ui \
@@ -42,8 +46,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    resources.qrc
+RESOURCES +=
 
 DISTFILES += \
     data/cities/cit.sas \

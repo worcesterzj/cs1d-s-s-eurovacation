@@ -4,9 +4,13 @@ city::city(const city& other) : name{ other.name }, parentCountry{ other.parentC
 {
     if(!other.foodItems.empty())
         for(int i = 0; i < static_cast<int>(other.foodItems.size()); i++)
-            this->foodItems.push_back(other.foodItems[i]);
+            this->foodItems.push_back(new food(other.foodItems[i]->getName(), other.foodItems[i]->getPrice()));
 }
 
+city::~city(){
+    for(auto f : foodItems)
+        delete f;
+}
 
 QString city::getName() const 
 {
@@ -20,7 +24,11 @@ QString city::getParentCountry() const
 
 food* city::getFood(int index) const
 {
-                return foodItems.at(index);
+        return foodItems.at(index);
+}
+
+std::vector<food*>& city::getFoodRef() {
+    return foodItems;
 }
 
 void city::setName(QString name)

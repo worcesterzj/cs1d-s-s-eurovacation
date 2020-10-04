@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     // START OF DEBUG STUFF!
 
 // Cities
-    cities.push_back(new city("Amsterdam", "The Netherlands"));
+/*    cities.push_back(new city("Amsterdam", "The Netherlands"));
     cities.push_back(new city("Berlin", "Germany"));
     cities.push_back(new city("Brussels", "Belgium"));
     cities.push_back(new city("Budapest", "Hungary"));
@@ -87,6 +87,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     // END OF DEBUG STUFF!
 
+    serializer s;
+    s.write(cities); */
+
+    parser p;
+    if (!p.read(cities)){
+        QMessageBox::StandardButton reply = QMessageBox::warning(this, "Bruh.", "The cit.sas file failed to read.", QMessageBox::StandardButtons(QMessageBox::StandardButton::Ignore | QMessageBox::StandardButton::Abort));
+        if (reply == QMessageBox::StandardButton::Abort)
+            exit(-1);
+    }
     // Setup UI
     ui->setupUi(this);
 
