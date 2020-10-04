@@ -9,7 +9,7 @@ public:
     food(): name{"Default Food"}, price{0.00} {}
     food(QString name, double price) : name{ name }, price{ price } {}
     food(const food& other);
-    
+
     //getters
     
     QString getName() const;

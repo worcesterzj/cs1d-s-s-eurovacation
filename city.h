@@ -11,12 +11,14 @@ public:
     city() : name{ "Defualt City" }, parentCountry{ "Default Country" } {}
     city(QString name, QString parentCountry) : name{ name }, parentCountry{ parentCountry } {}
     city(const city& other);
+    ~city();
 
     // getters
 
     QString getName() const;
     QString getParentCountry() const;
     food* getFood( int index ) const;   // uncomment when food exists :) You can still write it by looking at the UML diagram tho
+    std::vector<food*>& getFoodRef();
     int getNumFood() const;
 
 
