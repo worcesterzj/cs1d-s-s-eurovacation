@@ -10,6 +10,15 @@
 #include "presettripform.h"
 #include "parser.h"
 
+#include "login.h"
+
+struct user
+{
+    QString name;
+    bool isAdmin;
+};
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -31,11 +40,15 @@ private slots:
 
     void on_exitButton_clicked();                       // Exit the program.
 
+    void on_toolButton_clicked();
+
 private:
     Ui::MainWindow *ui;                     // ui               :   MainWindow*...................Main Ui Form.
     selectForm *sel;                        // sel              :   selectForm*...................Form to select between custom trip and preset trip forms.
     planTripForm *pl;                       // pl               :   planTripForm*.................Custom trip form.
     presettripform *pt;                     // pt               :   presettripform*...............Preset trip form.
+    Login *lgn;                             // lgn              :   Login*........................Login window
+    user *usr;                              // usr              :   User*.........................User status
 
     std::vector<city*> cities;              // cities           :   vector<city*>.................Vector of cities, read in at the begining of the program.
 };

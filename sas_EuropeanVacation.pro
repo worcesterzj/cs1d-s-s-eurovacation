@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     city.cpp \
     food.cpp \
+    login.cpp \
     main.cpp \
     mainwindow.cpp \
     parser.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     city.h \
     food.h \
+    login.h \
     mainwindow.h \
     parser.h \
     plantripform.h \
@@ -30,6 +32,7 @@ HEADERS += \
     serializer.h
 
 FORMS += \
+    login.ui \
     mainwindow.ui \
     plantripform.ui \
     presettripform.ui \
