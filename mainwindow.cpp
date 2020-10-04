@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QMouseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -93,6 +94,11 @@ MainWindow::MainWindow(QWidget *parent)
     sel = new selectForm(this);
     pl = new planTripForm(cities, this);
     pt = new presettripform(cities, this);
+    lgn = new Login(this);
+    usr = new user();
+
+    lgn->hide();
+    usr->isAdmin = false;
 
     // Signals
     connect(sel, SIGNAL(planButton_clicked()), this, SLOT(on_recievePlanSignal()));
@@ -167,4 +173,19 @@ void MainWindow::on_exitButton_clicked()
 
     if (reply == QMessageBox::Yes)
         QApplication::quit();
+}
+
+void MainWindow::on_toolButton_clicked()
+{
+    if(lgn->getPassword() == "cs1d")
+    {
+        usr->isAdmin = true;
+    }
+    else if(usr->isAdmin == false)
+    {
+        lgn->show();
+        lgn->raise();
+    }
+    //else show settings
+
 }
