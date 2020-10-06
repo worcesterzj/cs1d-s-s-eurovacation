@@ -2,6 +2,7 @@
 #define SELECTFORM_H
 
 #include <QWidget>
+#include "executetrip.h"
 
 namespace Ui {
 class selectForm;
@@ -25,7 +26,7 @@ signals:
     void tripButton_clicked();              // Singal that emits when Preset Trip menu button is pressed.
 
 private:
-    Ui::selectForm *ui;                         // ui   :   selectForm*...........Ui for selectForm.
+    Ui::selectForm *ui;                         // ui       :   selectForm*...........Ui for selectForm.
 };
 
 #endif // SELECTFORM_H

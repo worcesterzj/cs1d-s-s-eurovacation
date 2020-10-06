@@ -5,6 +5,7 @@
 #include <QString>
 #include "food.h"
 
+
 class city
 {
 public:
@@ -33,5 +34,6 @@ private:
     QString parentCountry;
     std::vector<food*> foodItems; // uncomment when food exists :)
 };
+
 
 #endif // CITY_H

@@ -9,16 +9,6 @@
 #include "plantripform.h"
 #include "presettripform.h"
 #include "parser.h"
-#include "addcities.h"
-
-#include "login.h"
-
-struct user
-{
-    QString name;
-    bool isAdmin;
-};
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,21 +27,15 @@ private slots:
 
     void on_recievePlanSignal();                        // Slot that recieves the signal to switch to Custom Trip form.
     void on_recieveTripSignal();                        // Slot that recieves the signal to switch to Preset Trip form.
-    void on_recieveBackSignal();                        // Slot that recieves the signal to switch back to Form Select from Custom Trip or Preset Trip form.
-    void refreshUI();                                   // Slot that recieves the signal to refresh ui lists.
+    void on_recieveBackSignal();                    // Slot that recieves the signal to switch back to Form Select from Custom Trip or Preset Trip form.
 
     void on_exitButton_clicked();                       // Exit the program.
-
-    void on_toolButton_clicked();
 
 private:
     Ui::MainWindow *ui;                     // ui               :   MainWindow*...................Main Ui Form.
     selectForm *sel;                        // sel              :   selectForm*...................Form to select between custom trip and preset trip forms.
     planTripForm *pl;                       // pl               :   planTripForm*.................Custom trip form.
     presettripform *pt;                     // pt               :   presettripform*...............Preset trip form.
-    addCities *adm;                         // adm              :   addCities*....................Admin area.
-    Login *lgn;                             // lgn              :   Login*........................Login window
-    user *usr;                              // usr              :   User*.........................User status
 
     std::vector<city*> cities;              // cities           :   vector<city*>.................Vector of cities, read in at the begining of the program.
 };

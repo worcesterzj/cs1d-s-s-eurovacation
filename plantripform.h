@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "city.h"
+#include "executetrip.h"
 
 namespace Ui {
 class planTripForm;
@@ -25,6 +26,8 @@ private slots:
 
     void on_comboBox_currentIndexChanged(int index);        // Slot that recieves an index being selected in plantripform.ui's comboBox.
 
+    void on_executeButton_clicked();
+
 signals:
     void backButton_clicked();                              // Signal that emits when the backButton is clicked.
 
@@ -35,6 +38,7 @@ private:
 
     QString* starting_city{ nullptr };         // starting_city    :   city*.........................City to start a trip at.
     std::vector<city*> trip;                // trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form (see above).
+    executeTrip *tp;                            // tp       :   executeTrip&..........Ui for executeTrip.
 };
 
 #endif // PLANTRIPFORM_H

@@ -6,6 +6,7 @@ selectForm::selectForm(QWidget *parent) :
     ui(new Ui::selectForm)
 {
     ui->setupUi(this);
+
 }
 
 selectForm::~selectForm()

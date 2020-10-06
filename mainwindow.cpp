@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 
+bool compareCits(const city* lhs, const city* rhs) { return lhs->getName() <= rhs->getName(); } // Compare the names of two cities to order them lexically.
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -96,6 +98,9 @@ MainWindow::MainWindow(QWidget *parent)
         if (reply == QMessageBox::StandardButton::Abort)
             exit(-1);
     }
+
+    std::sort(cities.begin(), cities.end(), compareCits); // sorts the cities alphabetically.
+
     // Setup UI
     ui->setupUi(this);
 
@@ -103,10 +108,10 @@ MainWindow::MainWindow(QWidget *parent)
     sel = new selectForm(this);
     pl = new planTripForm(cities, this);
     pt = new presettripform(cities, this);
-    lgn = new Login(this);
+    adm = new addCities(cities);
+    lgn = new Login();
     usr = new user();
 
-    lgn->hide();
     usr->isAdmin = false;
 
     // Signals
@@ -114,14 +119,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(sel, SIGNAL(tripButton_clicked()), this, SLOT(on_recieveTripSignal()));
     connect(pl, SIGNAL(backButton_clicked()), this, SLOT(on_recieveBackSignal()));
     connect(pt, SIGNAL(backButton_clicked()), this, SLOT(on_recieveBackSignal()));
+    connect(adm, SIGNAL(refresh_UI()), this, SLOT(refreshUI()));
 
     ui->stackedWidget->addWidget(sel);
     ui->stackedWidget->addWidget(pl);
     ui->stackedWidget->addWidget(pt);
     ui->stackedWidget->setCurrentWidget(sel);
 
-    for(int j = 0; j < static_cast<int>(cities.size()); j++)
-        ui->cityListWidget->addItem(cities[j]->getName());
+    refreshUI();
 
     ui->foodTableWidget->setRowCount(1);
     ui->foodTableWidget->setColumnCount(2);
@@ -136,12 +141,22 @@ MainWindow::~MainWindow()
     delete sel;
     delete pl;
     delete ui;
+    delete lgn;
+    delete adm;
+    delete usr;
 
     for(int i = 0; i < int(cities.size()); i++){
         city* a = cities.back();
         cities.pop_back();
         delete a;
     }
+}
+
+void MainWindow::refreshUI(){
+    ui->cityListWidget->clear();
+
+    for(int j = 0; j < static_cast<int>(cities.size()); j++)
+        ui->cityListWidget->addItem(cities[j]->getName());
 }
 
 void MainWindow::on_cityListWidget_itemSelectionChanged()
@@ -195,12 +210,16 @@ void MainWindow::on_toolButton_clicked()
     if(lgn->getPassword() == "cs1d")
     {
         usr->isAdmin = true;
+        adm->show();
+
     }
     else if(usr->isAdmin == false)
     {
         lgn->show();
         lgn->raise();
     }
-    //else show settings
+    else{
+        adm->show();
+    }
 
 }

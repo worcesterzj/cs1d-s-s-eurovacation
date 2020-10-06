@@ -10,11 +10,13 @@ planTripForm::planTripForm(const std::vector<city*>& cities, QWidget *parent) :
     ui->setupUi(this);
 
     refreshList();
+    tp = new executeTrip(trip);
 }
 
 planTripForm::~planTripForm()
 {
     delete starting_city;
+    delete tp;
     delete ui;
 }
 
@@ -55,4 +57,9 @@ void planTripForm::on_comboBox_currentIndexChanged(int index)
         ui->listWidget->item(index - 1)->setFlags(ui->listWidget->item(index - 1)->flags() & ~Qt::ItemIsEnabled);
 
     }
+}
+
+void planTripForm::on_executeButton_clicked()
+{
+    tp->show();
 }

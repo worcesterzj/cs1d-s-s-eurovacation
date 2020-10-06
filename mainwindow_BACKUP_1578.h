@@ -8,9 +8,9 @@
 #include "selectform.h"
 #include "plantripform.h"
 #include "presettripform.h"
+<<<<<<< HEAD
 #include "parser.h"
-#include "addcities.h"
-
+=======
 #include "login.h"
 
 struct user
@@ -18,7 +18,7 @@ struct user
     QString name;
     bool isAdmin;
 };
-
+>>>>>>> 9957f95e0732d74044b108ba4ecb86f959a91859
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,8 +37,7 @@ private slots:
 
     void on_recievePlanSignal();                        // Slot that recieves the signal to switch to Custom Trip form.
     void on_recieveTripSignal();                        // Slot that recieves the signal to switch to Preset Trip form.
-    void on_recieveBackSignal();                        // Slot that recieves the signal to switch back to Form Select from Custom Trip or Preset Trip form.
-    void refreshUI();                                   // Slot that recieves the signal to refresh ui lists.
+    void on_recieveBackSignal();                    // Slot that recieves the signal to switch back to Form Select from Custom Trip or Preset Trip form.
 
     void on_exitButton_clicked();                       // Exit the program.
 
@@ -49,7 +48,6 @@ private:
     selectForm *sel;                        // sel              :   selectForm*...................Form to select between custom trip and preset trip forms.
     planTripForm *pl;                       // pl               :   planTripForm*.................Custom trip form.
     presettripform *pt;                     // pt               :   presettripform*...............Preset trip form.
-    addCities *adm;                         // adm              :   addCities*....................Admin area.
     Login *lgn;                             // lgn              :   Login*........................Login window
     user *usr;                              // usr              :   User*.........................User status
 

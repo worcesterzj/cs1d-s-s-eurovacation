@@ -1,7 +1,7 @@
 #include "presettripform.h"
 #include "ui_presettripform.h"
 
-presettripform::presettripform(const std::vector<city*>& cities, QWidget *parent) :
+presettripform::presettripform(std::vector<city*>& cities, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::presettripform),
     cities(cities)
@@ -9,11 +9,13 @@ presettripform::presettripform(const std::vector<city*>& cities, QWidget *parent
     ui->setupUi(this);
 
     refreshTripComboBox();
+    tp = new executeTrip(cities);
 }
 
 presettripform::~presettripform()
 {
     delete ui;
+    delete tp;
 }
 
 void presettripform::refreshTripComboBox(){
@@ -29,4 +31,9 @@ void presettripform::refreshTripComboBox(){
 void presettripform::on_pushButton_clicked()
 {
     emit backButton_clicked();
+}
+
+void presettripform::on_executeButton_clicked()
+{
+    tp->show();
 }
