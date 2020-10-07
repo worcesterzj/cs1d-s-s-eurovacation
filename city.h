@@ -1,6 +1,4 @@
-#ifndef CITY_H
-#define CITY_H
-
+#pragma once
 #include <vector>
 #include <QString>
 #include "food.h"
@@ -34,6 +32,3 @@ private:
     QString parentCountry;
     std::vector<food*> foodItems; // uncomment when food exists :)
 };
-
-
-#endif // CITY_H

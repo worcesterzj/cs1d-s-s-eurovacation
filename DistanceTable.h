@@ -4,18 +4,18 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-using namespace std;
+
+#include "city.h"
+
+using std::vector;
 
 const int DUMMY = -1;
 
-	vector<vector<int> > vect;
-	int getDistance(int Xcity, int Ycity, const vector< vector<int> > &vec)
-	{
-		// goes to paticular ind
-		return vec[Xcity][Ycity];
-	}
+    int getCity_index(const vector<city*>& cities, city k);
 
-	int getClosestCityDistance(int Xcity, const vector< vector<int> > &vec)
+    int getDistance(int Xcity, int Ycity, const vector< vector<int> > &vec);
+
+    /*int getClosestCityDistance(int Xcity, const vector< vector<int> > &vec)
 	{
 		int returnedDistance = 999999;
 		for (int i = 0; i < int(vec.size()); i++)
@@ -94,7 +94,7 @@ const int DUMMY = -1;
 	            cout << setw(6) << vect[i][j] << '\t';
 	        cout << endl;
 	    }
-	}
+    } */
 
 
 

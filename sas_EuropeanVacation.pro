@@ -23,6 +23,7 @@ SOURCES += \
     serializer.cpp
 
 HEADERS += \
+    DistanceTable.h \
     addcities.h \
     city.h \
     executetrip.h \

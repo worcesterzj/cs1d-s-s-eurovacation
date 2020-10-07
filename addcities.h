@@ -6,6 +6,7 @@
 #include <QMessageBox>
 
 #include "city.h"
+#include "DistanceTable.h"
 #include "serializer.h"
 
 namespace Ui {
@@ -17,7 +18,7 @@ class addCities : public QWidget
     Q_OBJECT
 
 public:
-    explicit addCities(std::vector<city*>& cities, QWidget *parent = nullptr);
+    explicit addCities(std::vector<city*>& cities, std::vector<std::vector<int>>& distances, QWidget *parent = nullptr);
     ~addCities();
 
 private slots:
@@ -53,6 +54,10 @@ private slots:
 
     void on_write_Button_clicked();
 
+    void on_edit_editDistance_clicked();
+
+    void on_editCities_distBack_clicked();
+
 signals:
 
     void refresh_UI();
@@ -63,6 +68,7 @@ private:
     int edit_row_index;
 
     std::vector<city*>& cities;
+    std::vector<std::vector<int>>& distances;
 };
 
 #endif // ADDCITIES_H

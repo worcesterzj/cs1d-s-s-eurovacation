@@ -54,5 +54,6 @@ private:
     user *usr;                              // usr              :   User*.........................User status
 
     std::vector<city*> cities;              // cities           :   vector<city*>.................Vector of cities, read in at the begining of the program.
+    std::vector<std::vector<int>> distances;// distances        :   vector<vector<int>>...........Vector of vector of int. Stores the distances between cities.
 };
 #endif // MAINWINDOW_H

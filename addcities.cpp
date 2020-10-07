@@ -2,11 +2,28 @@
 #include "ui_addcities.h"
 
 bool compareCities(const city* lhs, const city* rhs) { return lhs->getName() <= rhs->getName(); } // Compare the names of two cities to order them lexically.
+int getCity_index(const vector<city*>& cities, city* k) {
 
-addCities::addCities(std::vector<city*>& cities, QWidget *parent) :
+    auto it = std::find(cities.begin(), cities.end(), k);   // Find index of XCity
+    if(it != cities.end()){
+        return std::distance(cities.begin(), it);
+    }
+    else{
+        throw "CITY_NOT_FOUND";
+    }
+}
+
+int getDistance(int Xcity, int Ycity, const vector< vector<int> > &vec)
+{
+    // goes to paticular ind
+    return vec[Xcity][Ycity];
+}
+
+addCities::addCities(std::vector<city*>& cities, std::vector<std::vector<int>>& distances, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::addCities),
-    cities( cities )
+    cities(cities),
+    distances(distances)
 {
     ui->setupUi(this);
 
@@ -21,6 +38,10 @@ addCities::addCities(std::vector<city*>& cities, QWidget *parent) :
 
     ui->add_foodTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Food Item"));
     ui->add_foodTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Price ($)"));
+
+    ui->edit_Table->setColumnCount(1);
+    ui->edit_Table->setHorizontalHeaderItem(0, new QTableWidgetItem("Distance"));
+
 
     refreshLists();
 
@@ -89,6 +110,17 @@ void addCities::on_editCity_pushButton_clicked()
             ui->edit_foodTable->setItem(i, 0, new QTableWidgetItem(cities[edit_row_index]->getFood(i)->getName()));
             ui->edit_foodTable->setItem(i, 1, new QTableWidgetItem(QString::number(cities[edit_row_index]->getFood(i)->getPrice(), 'f', 2)));
             ui->edit_foodTable->resizeColumnToContents(0);
+        }
+        ui->edit_Table->setRowCount(int(cities.size() - 1));
+        int modifier = 0;
+        for(int i = 0; i < int(cities.size()); i++){
+            if(i != edit_row_index){
+                ui->edit_Table->setVerticalHeaderItem(i - modifier, new QTableWidgetItem(cities[i]->getName()));
+                ui->edit_Table->setItem(0, i - modifier, new QTableWidgetItem(QString::number(getDistance(getCity_index(cities, cities[edit_row_index]),getCity_index(cities, cities[i]), distances ))));
+            }
+            else{
+                modifier = 1;
+            }
         }
 
         ui->stackedWidget->setCurrentIndex(2);
@@ -220,4 +252,14 @@ void addCities::on_write_Button_clicked()
 
         QMessageBox::information(this, "Saved.", "The data was saved.", QMessageBox::Ok);
     }
+}
+
+void addCities::on_edit_editDistance_clicked()
+{
+    ui->editCitiesStack->setCurrentIndex(1);
+}
+
+void addCities::on_editCities_distBack_clicked()
+{
+    ui->editCitiesStack->setCurrentIndex(0);
 }
