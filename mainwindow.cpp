@@ -168,31 +168,39 @@ MainWindow::~MainWindow()
 
 void MainWindow::refreshUI(){
     ui->cityListWidget->clear();
+    city *temp = nullptr;
 
     for(int j = 0; j < static_cast<int>(cities.size()); j++)
-        ui->cityListWidget->addItem(cities[j]->getName());
+    {
+        if(cities[j]->getName() == "Berlin")
+        {
+            temp = cities[j];
+        }
+    }
+
+    for(int j = 0; j < static_cast<int>(cities.size()); j++)
+    {
+        if(cities[j]->getName() == "Berlin")
+        {
+            ui->cityListWidget->addItem(cities[j]->getName());
+            continue;
+        }
+        city* tempCity = cities[j];
+        ui->cityListWidget->addItem(cities[j]->getName() + "'s Distance to Berlin is " + QString::number(getDistance(getCity_index(cities, temp), getCity_index(cities, tempCity), distances)) + "km");
+    }
 }
 
 void MainWindow::on_cityListWidget_itemSelectionChanged()
 {
-    int index = -1;
-    for(int i = 0; i < static_cast<int>(cities.size()); i++){
-        if(cities[i]->getName() == ui->cityListWidget->currentItem()->text())
-            index = i;
-    }
-
-    if(index == -1)
-        throw "CITY_NOT_FOUND";
-
     ui->foodTableWidget->clearContents();
 
-    int numFoodz = cities[index]->getNumFood();
+    int numFoodz = cities[ui->cityListWidget->currentRow()]->getNumFood();
 
     ui->foodTableWidget->setRowCount(numFoodz);
 
     for(int i = 0; i < numFoodz; i++){
-        ui->foodTableWidget->setItem(i, 0, new QTableWidgetItem(cities[index]->getFood(i)->getName()));
-        ui->foodTableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[index]->getFood(i)->getPrice(), 'f', 2)));
+        ui->foodTableWidget->setItem(i, 0, new QTableWidgetItem(cities[ui->cityListWidget->currentRow()]->getFood(i)->getName()));
+        ui->foodTableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[ui->cityListWidget->currentRow()]->getFood(i)->getPrice(), 'f', 2)));
         ui->foodTableWidget->resizeColumnToContents(0);
     }
 }
