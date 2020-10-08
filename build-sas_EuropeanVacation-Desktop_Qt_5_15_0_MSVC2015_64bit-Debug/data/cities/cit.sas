@@ -1,7 +1,3 @@
-@ The following file is the example save data containing the default cities in
-@ the program. Replace the file in data/cities with this one to reinitialize the
-@ program.
-
 # Amsterdam
 name = Amsterdam
 country = The Netherlands
