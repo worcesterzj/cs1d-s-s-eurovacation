@@ -2,24 +2,8 @@
 #include "ui_addcities.h"
 
 bool compareCities(const city* lhs, const city* rhs) { return lhs->getName() <= rhs->getName(); } // Compare the names of two cities to order them lexically.
-int getCity_index(const vector<city*>& cities, city* k) {
 
-    auto it = std::find(cities.begin(), cities.end(), k);   // Find index of XCity
-    if(it != cities.end()){
-        return std::distance(cities.begin(), it);
-    }
-    else{
-        throw "CITY_NOT_FOUND";
-    }
-}
-
-int getDistance(int Xcity, int Ycity, const vector< vector<int> > &vec)
-{
-    // goes to paticular ind
-    return vec[Xcity][Ycity];
-}
-
-addCities::addCities(std::vector<city*>& cities, std::vector<std::vector<int>>& distances, QWidget *parent) :
+addCities::addCities(std::vector<city*>& cities, distanceTable_class& distances, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::addCities),
     cities(cities),
@@ -32,15 +16,22 @@ addCities::addCities(std::vector<city*>& cities, std::vector<std::vector<int>>& 
 
     ui->edit_foodTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Food Item"));
     ui->edit_foodTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Price ($)"));
+    ui->edit_foodTable->setItemDelegateForColumn(1, new price_delegator);
 
     ui->add_foodTable->setColumnCount(2);
     ui->add_foodTable->horizontalHeader()->setStretchLastSection( true );
 
     ui->add_foodTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Food Item"));
     ui->add_foodTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Price ($)"));
+    ui->add_foodTable->setItemDelegateForColumn(1, new price_delegator);
 
     ui->edit_Table->setColumnCount(1);
     ui->edit_Table->setHorizontalHeaderItem(0, new QTableWidgetItem("Distance"));
+    ui->edit_Table->setItemDelegate(new distance_delegator);
+
+    ui->distance_Table->setColumnCount(1);
+    ui->distance_Table->setHorizontalHeaderItem(0, new QTableWidgetItem("Distance"));
+    ui->distance_Table->setItemDelegate(new distance_delegator);
 
 
     refreshLists();
@@ -85,7 +76,8 @@ void addCities::on_deleteCity_pushButton_clicked()
 }
 
 void addCities::on_edit_Cancel_clicked()
-{    
+{
+    setWindowTitle("S&S Administrator Area");
     edit_row_index = -1;
     ui->stackedWidget->setCurrentIndex(0);
 }
@@ -95,6 +87,8 @@ void addCities::on_editCity_pushButton_clicked()
     if(ui->cities_listWidget->currentItem() == nullptr)
         QMessageBox::information(this, "Uh oh!", "No selection made.");
     else{
+        setWindowTitle("Edit Existing City");
+
         edit_row_index = ui->cities_listWidget->row(ui->cities_listWidget->currentItem());
 
         ui->editCities_namelineEdit->setText(cities[edit_row_index]->getName());
@@ -116,7 +110,7 @@ void addCities::on_editCity_pushButton_clicked()
         for(int i = 0; i < int(cities.size()); i++){
             if(i != edit_row_index){
                 ui->edit_Table->setVerticalHeaderItem(i - modifier, new QTableWidgetItem(cities[i]->getName()));
-                ui->edit_Table->setItem(0, i - modifier, new QTableWidgetItem(QString::number(getDistance(getCity_index(cities, cities[edit_row_index]),getCity_index(cities, cities[i]), distances ))));
+                ui->edit_Table->setItem(0, i - modifier, new QTableWidgetItem(QString::number(distances.getDistance(getCity_index(cities, cities[edit_row_index]),getCity_index(cities, cities[i])))));
             }
             else{
                 modifier = 1;
@@ -151,6 +145,13 @@ void addCities::on_edit_addFood_clicked()
 
 void addCities::on_edit_Save_clicked()
 {
+    for(int i = 0; i < ui->edit_Table->rowCount(); i++){
+        if(!ui->edit_Table->item(i,0) || ui->edit_Table->item(i,0)->text() == "") {
+            QMessageBox::information(this, "Uh oh!", "Be sure to fill out all of the distances.");
+            return;
+        }
+    }
+
     QMessageBox::StandardButton reply = QMessageBox::question(this, "Are you sure?", "Would you really like to overwrite this city?");
 
 
@@ -169,6 +170,27 @@ void addCities::on_edit_Save_clicked()
 
         std::sort(cities.begin(), cities.end(), compareCities);
 
+        for(auto e : cities){
+            if(e->getName() == ui->editCities_namelineEdit->text()){
+                edit_row_index = getCity_index(cities, e);
+                break;
+            }
+        }
+        int modifier = 0;
+        for(int i = 0; i < int(cities.size()); i++){
+            if(i == edit_row_index){
+                distances.setDistance(i, edit_row_index, -1);
+                modifier = 1;
+            }
+            else{
+                distances.setDistance(i, edit_row_index, ui->edit_Table->item(i - modifier, 0)->text().toInt());
+                distances.setDistance(edit_row_index, i, ui->edit_Table->item(i - modifier, 0)->text().toInt());
+            }
+        }
+
+        edit_row_index = -1;
+        setWindowTitle("S&S Administrator Area");
+
         refreshLists();
 
         ui->stackedWidget->setCurrentIndex(0);
@@ -177,11 +199,19 @@ void addCities::on_edit_Save_clicked()
 
 void addCities::on_addCity_pushButton_clicked()
 {
+    setWindowTitle("Add New City");
+
+    ui->distance_Table->setRowCount(int(cities.size()));
+
+    for(int i = 0; i < int(cities.size()); i++)
+        ui->distance_Table->setVerticalHeaderItem(i, new QTableWidgetItem(cities[i]->getName()));
+
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 void addCities::on_add_Cancel_clicked()
 {
+    setWindowTitle("S&S Administrator Area");
     ui->add_foodTable->clear();
     ui->add_setName->clear();
     ui->add_setCountry->clear();
@@ -222,6 +252,14 @@ void addCities::on_add_addFood_clicked()
 
 void addCities::on_save_City_clicked()
 {
+
+    for(int i = 0; i < ui->distance_Table->rowCount(); i++){
+        if(!ui->distance_Table->item(i,0) || ui->distance_Table->item(i,0)->text() == "") {
+            QMessageBox::information(this, "Uh oh!", "Be sure to fill out all of the distances.");
+            return;
+        }
+    }
+
     city temp;
 
     temp.setName(ui->add_setName->text());
@@ -233,6 +271,32 @@ void addCities::on_save_City_clicked()
     cities.push_back(new city(temp));
 
     std::sort(cities.begin(), cities.end(), compareCities);
+
+    std::vector<int> temp_distances;
+
+    int index_of_this_city = 0;
+
+    for(int i = 0; i < int(cities.size()); i++){
+        if(i == int(cities.size() - 1)){
+            temp_distances.push_back(-1);
+        }
+        else{
+
+
+            for(auto e : cities){
+                if(e->getName() == ui->add_setName->text()){
+                    index_of_this_city = getCity_index(cities, e);
+                    break;
+                }
+            }
+
+            temp_distances.push_back(ui->distance_Table->item(i, 0)->text().toInt());
+        }
+    }
+
+    distances.addCity(temp_distances, index_of_this_city);
+
+    setWindowTitle("S&S Administrator Area");
 
     refreshLists();
 

@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QMessageBox>
-#include <QMouseEvent>
 
 bool compareCits(const city* lhs, const city* rhs) { return lhs->getName() <= rhs->getName(); } // Compare the names of two cities to order them lexically.
 
@@ -87,8 +85,7 @@ MainWindow::MainWindow(QWidget *parent)
     cities[12]->addFoodItem(new food("Kaiserschmarrn", 7.53));
     cities[12]->addFoodItem(new food("Sachertorte", 5.85)); */
 
-
-    distances = {
+    std::vector<std::vector<int>> temp_distances = {
             { -1, 655, 236, 1395,361,2236,541,1767,430,878,1647, 1435, 1147},
             { 655, -1, 765,873,288,2779,678,2392,1054,349, 1502, 1084, 640},
             { 236, 765, -1, 1353,489,2357,403,1578,313,898,1483, 1564, 1104},
@@ -104,6 +101,8 @@ MainWindow::MainWindow(QWidget *parent)
             {1147, 640, 1104, 243, 930, 2867, 1461, 2401, 1236, 331, 1120, 1758, -1}
             };
 
+    distances = temp_distances;
+
     // END OF DEBUG STUFF!
 
     parser p;
@@ -115,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     std::sort(cities.begin(), cities.end(), compareCits); // sorts the cities alphabetically.
 
+
     // Setup UI
     ui->setupUi(this);
 
@@ -124,9 +124,11 @@ MainWindow::MainWindow(QWidget *parent)
     pt = new presettripform(cities, this);
     adm = new addCities(cities, distances);
     lgn = new Login();
-    usr = new user();
 
-    usr->isAdmin = false;
+    usr.name = "[Guest]";
+    usr.isAdmin = false;
+
+    setWindowTitle("S&S Vacation Planner - Logged in as: " + usr.name);
 
     // Signals
     connect(sel, SIGNAL(planButton_clicked()), this, SLOT(on_recievePlanSignal()));
@@ -134,6 +136,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(pl, SIGNAL(backButton_clicked()), this, SLOT(on_recieveBackSignal()));
     connect(pt, SIGNAL(backButton_clicked()), this, SLOT(on_recieveBackSignal()));
     connect(adm, SIGNAL(refresh_UI()), this, SLOT(refreshUI()));
+    connect(lgn, SIGNAL(loginSuccess(QString)), this, SLOT(on_recieveLogin(QString)));
 
     ui->stackedWidget->addWidget(sel);
     ui->stackedWidget->addWidget(pl);
@@ -157,7 +160,6 @@ MainWindow::~MainWindow()
     delete ui;
     delete lgn;
     delete adm;
-    delete usr;
 
     for(int i = 0; i < int(cities.size()); i++){
         city* a = cities.back();
@@ -186,7 +188,7 @@ void MainWindow::refreshUI(){
             continue;
         }
         city* tempCity = cities[j];
-        ui->cityListWidget->addItem(cities[j]->getName() + "'s Distance to Berlin is " + QString::number(getDistance(getCity_index(cities, temp), getCity_index(cities, tempCity), distances)) + "km");
+        ui->cityListWidget->addItem(cities[j]->getName() + " (Distance to Berlin: " + QString::number(distances.getDistance(getCity_index(cities, temp), getCity_index(cities, tempCity))) + "km)");
     }
 }
 
@@ -229,19 +231,21 @@ void MainWindow::on_exitButton_clicked()
 
 void MainWindow::on_toolButton_clicked()
 {
-    if(lgn->getPassword() == "cs1d")
+    if(lgn->loggedIn())
     {
-        usr->isAdmin = true;
         adm->show();
 
     }
-    else if(usr->isAdmin == false)
+    else if(usr.isAdmin == false)
     {
         lgn->show();
         lgn->raise();
     }
-    else{
-        adm->show();
-    }
 
+}
+
+void MainWindow::on_recieveLogin(QString name)
+{
+    setWindowTitle("S&S Vacation Planner - Logged in as: " + name);
+    adm->show();
 }

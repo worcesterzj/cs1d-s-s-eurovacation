@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     addcities.cpp \
     city.cpp \
+    distancetable_class.cpp \
     executetrip.cpp \
     food.cpp \
     login.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     DistanceTable.h \
     addcities.h \
     city.h \
+    distancetable_class.h \
     executetrip.h \
     food.h \
     login.h \
@@ -34,7 +36,8 @@ HEADERS += \
     plantripform.h \
     presettripform.h \
     selectform.h \
-    serializer.h
+    serializer.h \
+    user.h
 
 FORMS += \
     addcities.ui \

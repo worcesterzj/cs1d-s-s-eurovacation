@@ -10,9 +10,6 @@
     <height>414</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
@@ -25,13 +22,6 @@
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Cities</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
@@ -90,6 +80,13 @@
        <item row="1" column="3">
         <widget class="QListWidget" name="cities_listWidget"/>
        </item>
+       <item row="1" column="1">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="addNewCityWidget">
@@ -121,13 +118,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>Add New City</string>
-         </property>
-        </widget>
        </item>
        <item row="2" column="2" rowspan="2">
         <widget class="QStackedWidget" name="add_Stack">
@@ -192,7 +182,11 @@
          <widget class="QWidget" name="page_4">
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="1" column="0">
-            <widget class="QTableWidget" name="distance_Table"/>
+            <widget class="QTableWidget" name="distance_Table">
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly</set>
+             </property>
+            </widget>
            </item>
            <item row="3" column="0">
             <widget class="QPushButton" name="pushButton_3">
@@ -217,6 +211,22 @@
            </item>
           </layout>
          </widget>
+        </widget>
+       </item>
+       <item row="0" column="2" colspan="2">
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Add New City</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
       </layout>
@@ -316,13 +326,6 @@
              </item>
             </layout>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_10">
-             <property name="text">
-              <string>Edit City</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="page_2">
@@ -346,6 +349,22 @@
            </item>
           </layout>
          </widget>
+        </widget>
+       </item>
+       <item row="0" column="8" colspan="2">
+        <widget class="QLabel" name="label_10">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Edit City</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
       </layout>

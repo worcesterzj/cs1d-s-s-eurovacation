@@ -1,4 +1,4 @@
-#ifndef DISTANCETABLE_H_
+/*#ifndef DISTANCETABLE_H_
 #define DISTANCETABLE_H_
 
 #include <iostream>
@@ -144,4 +144,4 @@ int main()
 }
  */
 
-#endif /* DISTANCETABLE_H_ */
+/*#endif /* DISTANCETABLE_H_ */

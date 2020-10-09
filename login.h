@@ -15,22 +15,24 @@ class Login : public QWidget
 public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
-//    void mousePressEvent(QMouseEvent *event);
-//    void mouseMoveEvent(QMouseEvent *event);
-    QString getPassword() {return password;};
+
+
+    bool loggedIn() const {return _loggedIn;}
 
 private slots:
     void on_pushButton_login_clicked();
 
     void on_pushButton_clicked();
 
+signals:
+
+    void loginSuccess(QString name);
+
 private:
     Ui::Login *ui;
     QPoint offset;
-    QString password;
-    QString username;
-//    int m_nMouseClick_X_Coordinate;
-//    int m_nMouseClick_Y_Coordinate;
+
+    bool _loggedIn;
 };
 
 #endif // LOGIN_H

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include <QMouseEvent>
 
 #include "serializer.h"
 #include "city.h"
@@ -10,15 +12,10 @@
 #include "presettripform.h"
 #include "parser.h"
 #include "addcities.h"
+#include "distancetable_class.h"
+#include "user.h"
 
 #include "login.h"
-
-struct user
-{
-    QString name;
-    bool isAdmin;
-};
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,6 +41,8 @@ private slots:
 
     void on_toolButton_clicked();
 
+    void on_recieveLogin(QString name);                             // Slot that recieves the signal that indicates a successful login.
+
 private:
     Ui::MainWindow *ui;                     // ui               :   MainWindow*...................Main Ui Form.
     selectForm *sel;                        // sel              :   selectForm*...................Form to select between custom trip and preset trip forms.
@@ -51,9 +50,9 @@ private:
     presettripform *pt;                     // pt               :   presettripform*...............Preset trip form.
     addCities *adm;                         // adm              :   addCities*....................Admin area.
     Login *lgn;                             // lgn              :   Login*........................Login window
-    user *usr;                              // usr              :   User*.........................User status
+    user usr;                               // usr              :   User*.........................User status
 
     std::vector<city*> cities;              // cities           :   vector<city*>.................Vector of cities, read in at the begining of the program.
-    std::vector<std::vector<int>> distances;// distances        :   vector<vector<int>>...........Vector of vector of int. Stores the distances between cities.
+    distanceTable_class distances;          // distances        :   vector<vector<int>>...........Vector of vector of int. Stores the distances between cities.
 };
 #endif // MAINWINDOW_H

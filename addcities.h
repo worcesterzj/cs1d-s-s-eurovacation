@@ -4,10 +4,44 @@
 #include <QWidget>
 #include <vector>
 #include <QMessageBox>
+#include <iostream>
+#include <QItemDelegate>
+#include <QLineEdit>
 
 #include "city.h"
-#include "DistanceTable.h"
+#include "distancetable_class.h"
 #include "serializer.h"
+
+class distance_delegator
+        : public QItemDelegate
+{
+public:
+    QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem & option,
+                      const QModelIndex & index) const
+    {
+        QLineEdit *lineEdit = new QLineEdit(parent);
+        // Set validator
+        QIntValidator *validator = new QIntValidator(0, 2147483647, lineEdit);
+        lineEdit->setValidator(validator);
+        return lineEdit;
+    }
+};
+
+class price_delegator
+        : public QItemDelegate
+{
+public:
+    QWidget* createEditor(QWidget *parent, const QStyleOptionViewItem & option,
+                      const QModelIndex & index) const
+    {
+        QLineEdit *lineEdit = new QLineEdit(parent);
+        // Set validator
+        QDoubleValidator *validator = new QDoubleValidator(0, 2147483647, 2, lineEdit);
+        lineEdit->setValidator(validator);
+        return lineEdit;
+    }
+};
+
 
 namespace Ui {
 class addCities;
@@ -18,7 +52,7 @@ class addCities : public QWidget
     Q_OBJECT
 
 public:
-    explicit addCities(std::vector<city*>& cities, std::vector<std::vector<int>>& distances, QWidget *parent = nullptr);
+    explicit addCities(std::vector<city*>& cities, distanceTable_class& distances, QWidget *parent = nullptr);
     ~addCities();
 
 private slots:
@@ -68,7 +102,7 @@ private:
     int edit_row_index;
 
     std::vector<city*>& cities;
-    std::vector<std::vector<int>>& distances;
+    distanceTable_class& distances;
 };
 
 #endif // ADDCITIES_H
