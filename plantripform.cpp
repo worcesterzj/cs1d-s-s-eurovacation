@@ -68,8 +68,17 @@ void planTripForm::on_executeButton_clicked()
     std::vector<city *> checkedCity;
     QString dupCity;
 
-    checkedCity.push_back(cities[ui->comboBox->currentIndex() - 1]);
+    qInfo() << dupCity;
+
+    if(ui->comboBox->currentIndex() == 0)
+    {
+        QMessageBox::about(this, "ERROR", "Please select a city from the dropdown menu.");
+        return;
+    }
+
+    checkedCity.push_back(cities[ui->comboBox->currentIndex()]);
     dupCity = checkedCity[0]->getName();
+
 
     for(int i = 0; i < static_cast<int>(cities.size()); i++)
     {
