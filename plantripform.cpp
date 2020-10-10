@@ -1,6 +1,10 @@
 #include "plantripform.h"
 #include "ui_plantripform.h"
+#include "city.h"
 #include <iostream>
+#include <QDebug>
+#include <iostream>
+#include <QMessageBox>
 
 planTripForm::planTripForm(const std::vector<city*>& cities, QWidget *parent) :
     QWidget(parent),
@@ -61,5 +65,29 @@ void planTripForm::on_comboBox_currentIndexChanged(int index)
 
 void planTripForm::on_executeButton_clicked()
 {
+    std::vector<city *> checkedCity;
+    QString dupCity;
+
+    checkedCity.push_back(cities[ui->comboBox->currentIndex() - 1]);
+    dupCity = checkedCity[0]->getName();
+
+    for(int i = 0; i < static_cast<int>(cities.size()); i++)
+    {
+        if(dupCity == cities[i]->getName())
+        {
+            continue;
+        }
+        else if(ui->listWidget->item(i)->checkState())
+        {
+            checkedCity.push_back(cities[i]);
+        }
+    }
+
+    for(int i = 0; i < static_cast<int>(checkedCity.size()); i++)
+    {
+        qInfo() << "C++ Style Info Message" << checkedCity[i]->getName();
+    }
+
+//    tp->setCities(checkedCity);
     tp->show();
 }
