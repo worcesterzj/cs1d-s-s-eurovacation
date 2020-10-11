@@ -258,9 +258,13 @@ void MainWindow::on_recieveLogin(QString name)
             QMessageBox::No,
             QMessageBox::Cancel);
 
-            QPixmap monkey(":images/images/monkey_warn.png");
-            monkeybox.setIconPixmap(monkey);
-            monkeybox.exec();
+        monkeybox.setStandardButtons(QMessageBox::Ok | QMessageBox::Default);
+
+        QPixmap monkey(":images/images/monkey_warn.png");
+        QIcon banana(":images/images/banana.png");
+        monkeybox.setIconPixmap(monkey);
+        monkeybox.setWindowIcon(banana);
+        monkeybox.exec();
     }
     else
         usr.isMonkey = false;
