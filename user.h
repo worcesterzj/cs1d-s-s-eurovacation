@@ -7,6 +7,7 @@ struct user
 {
     QString name;
     bool isAdmin;
+    bool isMonkey;
 };
 
 #endif // USER_H

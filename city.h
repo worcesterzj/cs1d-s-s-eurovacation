@@ -16,7 +16,7 @@ public:
 
     QString getName() const;
     QString getParentCountry() const;
-    food* getFood( int index ) const;   // uncomment when food exists :) You can still write it by looking at the UML diagram tho
+    food getFood( int index ) const;   // uncomment when food exists :) You can still write it by looking at the UML diagram tho
     std::vector<food*>& getFoodRef();
     int getNumFood() const;
 

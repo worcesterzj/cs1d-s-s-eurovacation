@@ -10,6 +10,10 @@
     <height>414</height>
    </rect>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/images/sasicon.png</normaloff>:/images/images/sasicon.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
@@ -373,6 +377,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

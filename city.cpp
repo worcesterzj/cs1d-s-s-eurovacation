@@ -22,9 +22,9 @@ QString city::getParentCountry() const
         return parentCountry;
 }
 
-food* city::getFood(int index) const
+food city::getFood(int index) const
 {
-        return foodItems.at(index);
+        return *foodItems.at(index);
 }
 
 std::vector<food*>& city::getFoodRef() {

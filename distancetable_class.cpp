@@ -17,7 +17,7 @@ distanceTable_class::distanceTable_class()
 
 }
 
-int distanceTable_class::getDistance(int Xcity, int Ycity)
+int distanceTable_class::getDistance(int Xcity, int Ycity) const
 {
     // goes to paticular ind
     return vec[Xcity][Ycity];

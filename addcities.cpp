@@ -11,6 +11,8 @@ addCities::addCities(std::vector<city*>& cities, distanceTable_class& distances,
 {
     ui->setupUi(this);
 
+    setWindowTitle("S&S Administrator Area");
+
     ui->edit_foodTable->setColumnCount(2);
     ui->edit_foodTable->horizontalHeader()->setStretchLastSection( true );
 
@@ -101,8 +103,8 @@ void addCities::on_editCity_pushButton_clicked()
         ui->edit_foodTable->setRowCount(numFoodz);
 
         for(int i = 0; i < numFoodz; i++){
-            ui->edit_foodTable->setItem(i, 0, new QTableWidgetItem(cities[edit_row_index]->getFood(i)->getName()));
-            ui->edit_foodTable->setItem(i, 1, new QTableWidgetItem(QString::number(cities[edit_row_index]->getFood(i)->getPrice(), 'f', 2)));
+            ui->edit_foodTable->setItem(i, 0, new QTableWidgetItem(cities[edit_row_index]->getFood(i).getName()));
+            ui->edit_foodTable->setItem(i, 1, new QTableWidgetItem(QString::number(cities[edit_row_index]->getFood(i).getPrice(), 'f', 2)));
             ui->edit_foodTable->resizeColumnToContents(0);
         }
         ui->edit_Table->setRowCount(int(cities.size() - 1));

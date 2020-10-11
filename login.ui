@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Administrator Login</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/images/sasicon.png</normaloff>:/images/images/sasicon.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="admin_label">
@@ -111,6 +115,8 @@
   <tabstop>lineEdit_password</tabstop>
   <tabstop>pushButton_login</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

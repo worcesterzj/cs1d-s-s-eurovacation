@@ -1,6 +1,7 @@
 <RCC>
-    <qresource prefix="/data/cities">
-        <file>data/cities/cit.sas</file>
-        <file>data/cities/dist.sas</file>
+    <qresource prefix="/images">
+        <file>images/monkey.png</file>
+        <file>images/monkey_warn.png</file>
+        <file>images/sasicon.png</file>
     </qresource>
 </RCC>

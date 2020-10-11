@@ -19,7 +19,7 @@ public:
         return *this;
     }
 
-    int getDistance(int Xcity, int Ycity);
+    int getDistance(int Xcity, int Ycity) const;
     int getClosestCityDistance(int Xcity);
     int getClosestCityIndex(int Xcity);
     int customClosestCityDistance (int Xcity, const std::vector<int> &allowed);
@@ -27,8 +27,6 @@ public:
 
     void setDistance(int Xcity, int Ycity, int dist);
     void addCity(const std::vector<int> city_distances, int index);
-
-
 
 private:
 

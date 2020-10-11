@@ -1,10 +1,11 @@
 #include "presettripform.h"
 #include "ui_presettripform.h"
 
-presettripform::presettripform(std::vector<city*>& cities, QWidget *parent) :
+presettripform::presettripform(std::vector<city*>& cities, distanceTable_class& dist, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::presettripform),
-    cities(cities)
+    cities(cities),
+    dist( dist )
 {
     ui->setupUi(this);
 
@@ -36,4 +37,9 @@ void presettripform::on_pushButton_clicked()
 void presettripform::on_executeButton_clicked()
 {
     tp->show();
+}
+
+void presettripform::on_presetTripComboBox_currentIndexChanged(int index)
+{
+
 }

@@ -6,10 +6,11 @@
 #include <iostream>
 #include <QMessageBox>
 
-planTripForm::planTripForm(const std::vector<city*>& cities, QWidget *parent) :
+planTripForm::planTripForm(std::vector<city*>& cities, distanceTable_class& dist, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::planTripForm),
-    cities(cities)
+    cities(cities),
+    dist( dist )
 {
     ui->setupUi(this);
 
@@ -76,7 +77,7 @@ void planTripForm::on_executeButton_clicked()
         return;
     }
 
-    checkedCity.push_back(cities[ui->comboBox->currentIndex()]);
+    checkedCity.push_back(cities[ui->comboBox->currentIndex() - 1]);
     dupCity = checkedCity[0]->getName();
 
 
@@ -98,5 +99,10 @@ void planTripForm::on_executeButton_clicked()
     }
 
 //    tp->setCities(checkedCity);
+
+    trip = checkedCity;
+
+    tp->initialize_Trip();
+
     tp->show();
 }

@@ -16,7 +16,7 @@ class planTripForm : public QWidget
     Q_OBJECT
 
 public:
-    explicit planTripForm(const std::vector<city*>& cities, QWidget *parent = nullptr); // Default constructor populates comboBox and listWidget with the vector from cities.
+    explicit planTripForm(std::vector<city*>& cities, distanceTable_class& dist, QWidget *parent = nullptr); // Default constructor populates comboBox and listWidget with the vector from cities.
     ~planTripForm();
 
     void refreshList();
@@ -35,10 +35,11 @@ private:
     Ui::planTripForm *ui;                               // ui       :   planTripForm*..........Plan Trip form.
 
     const std::vector<city*>& cities;                   // cities   :   const vector<city*>&...Reference to the vector, passed from MainWindow.
+    const distanceTable_class& dist;
 
-    QString* starting_city{ nullptr };         // starting_city    :   city*.........................City to start a trip at.
-    std::vector<city*> trip;                // trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form (see above).
-    executeTrip *tp;                            // tp       :   executeTrip&..........Ui for executeTrip.
+    QString* starting_city{ nullptr };                  // starting_city    :   city*.........................City to start a trip at.
+    std::vector<city*> trip;                            // trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form (see above).
+    executeTrip *tp;                                    // tp       :   executeTrip&..........Ui for executeTrip.
 };
 
 #endif // PLANTRIPFORM_H

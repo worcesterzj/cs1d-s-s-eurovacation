@@ -21,7 +21,10 @@ Login::~Login()
 void Login::on_pushButton_login_clicked()
 {
 
-    if(ui->lineEdit_username->text() == "SmithStrauss" && ui->lineEdit_password->text() == "cs1d")
+    if((ui->lineEdit_username->text() == "SmithStrauss" && ui->lineEdit_password->text() == "cs1d")
+            || (ui->lineEdit_username->text() == "jugemu" && ui->lineEdit_password->text() == "5ko/sur1k1r3")
+            || (ui->lineEdit_username->text() == "actual_monkey" && ui->lineEdit_password->text() == "banana")
+            ) // you can add your own login by copying the line above.
     {
         QMessageBox::information(this, "Login", "Username and password is correct.");
         _loggedIn = true;

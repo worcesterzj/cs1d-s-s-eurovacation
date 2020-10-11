@@ -120,8 +120,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Setup other widgets and add them to the stackedWidget.
     sel = new selectForm(this);
-    pl = new planTripForm(cities, this);
-    pt = new presettripform(cities, this);
+    pl = new planTripForm(cities, distances, this);
+    pt = new presettripform(cities, distances, this);
     adm = new addCities(cities, distances);
     lgn = new Login();
 
@@ -201,8 +201,8 @@ void MainWindow::on_cityListWidget_itemSelectionChanged()
     ui->foodTableWidget->setRowCount(numFoodz);
 
     for(int i = 0; i < numFoodz; i++){
-        ui->foodTableWidget->setItem(i, 0, new QTableWidgetItem(cities[ui->cityListWidget->currentRow()]->getFood(i)->getName()));
-        ui->foodTableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[ui->cityListWidget->currentRow()]->getFood(i)->getPrice(), 'f', 2)));
+        ui->foodTableWidget->setItem(i, 0, new QTableWidgetItem(cities[ui->cityListWidget->currentRow()]->getFood(i).getName()));
+        ui->foodTableWidget->setItem(i, 1, new QTableWidgetItem("$ " + QString::number(cities[ui->cityListWidget->currentRow()]->getFood(i).getPrice(), 'f', 2)));
         ui->foodTableWidget->resizeColumnToContents(0);
     }
 }
@@ -236,7 +236,7 @@ void MainWindow::on_toolButton_clicked()
         adm->show();
 
     }
-    else if(usr.isAdmin == false)
+    else
     {
         lgn->show();
         lgn->raise();
@@ -246,6 +246,25 @@ void MainWindow::on_toolButton_clicked()
 
 void MainWindow::on_recieveLogin(QString name)
 {
+    usr.name = name;
+    usr.isAdmin = true;
+
+    if(name == "actual_monkey") {
+        usr.isMonkey = true;
+        QMessageBox monkeybox("Alert!",
+            "Be advised, a monkey has been detected on the system.",
+            QMessageBox::NoIcon,
+            QMessageBox::Ok | QMessageBox::Default,
+            QMessageBox::No,
+            QMessageBox::Cancel);
+
+            QPixmap monkey(":images/images/monkey_warn.png");
+            monkeybox.setIconPixmap(monkey);
+            monkeybox.exec();
+    }
+    else
+        usr.isMonkey = false;
+
     setWindowTitle("S&S Vacation Planner - Logged in as: " + name);
     adm->show();
 }
