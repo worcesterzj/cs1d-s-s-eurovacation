@@ -17,7 +17,7 @@ class executeTrip : public QWidget
     Q_OBJECT
 
 public:
-    explicit executeTrip(std::vector<city*>& cities, QWidget *parent = nullptr);
+    explicit executeTrip(std::vector<city*>& cities, std::vector<int>& distances, QWidget *parent = nullptr);
     ~executeTrip();
 
     void initialize_Trip();                                         // Let the trip form know we've begun the trip.
@@ -38,6 +38,7 @@ private slots:
 private:
     Ui::executeTrip *ui;
     const std::vector<city*>& trip;
+    const std::vector<int>& distances;
 
     int current_city_index;
 

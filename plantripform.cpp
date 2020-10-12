@@ -15,7 +15,7 @@ planTripForm::planTripForm(std::vector<city*>& cities, distanceTable_class& dist
     ui->setupUi(this);
 
     refreshList();
-    tp = new executeTrip(trip);
+    tp = new executeTrip(trip, trip_distances);
 }
 
 planTripForm::~planTripForm()
@@ -73,7 +73,7 @@ void planTripForm::on_executeButton_clicked()
 
     if(ui->comboBox->currentIndex() == 0)
     {
-        QMessageBox::about(this, "ERROR", "Please select a city from the dropdown menu.");
+        QMessageBox::information(this, "ERROR", "Please select a city from the dropdown menu.");
         return;
     }
 
@@ -93,16 +93,44 @@ void planTripForm::on_executeButton_clicked()
         }
     }
 
-    for(int i = 0; i < static_cast<int>(checkedCity.size()); i++)
+    std::vector<city*> temp;
+
+    dist.getShortestTrip(cities, temp, checkedCity);
+
+    for(int i = 0; i < static_cast<int>(temp.size()); i++)
     {
-        qInfo() << "C++ Style Info Message" << checkedCity[i]->getName();
+        qInfo() << temp[i]->getName();
     }
 
-//    tp->setCities(checkedCity);
+    trip = temp;
 
-    trip = checkedCity;
+    trip_distances.clear();
+    std::vector<int> allowed;
+    for(int i = 0; i < int(cities.size()); i++){
+        for(auto e : trip){
+            if(e->getName() == cities[i]->getName())
+                allowed.push_back(getCity_index(cities, cities[i]));
+        }
+    }
+
+    for(int i = 0; i < int(trip.size() - 1); i++){
+        for(auto e : cities){
+            if(e->getName() == trip[i]->getName()){
+                trip_distances.push_back(dist.customClosestCityDistance(getCity_index(cities, e), allowed));
+                break;
+            }
+        }
+    }
 
     tp->initialize_Trip();
 
     tp->show();
+}
+
+void planTripForm::on_listWidget_doubleClicked(const QModelIndex &index)
+{
+    if(ui->listWidget->item(index.row())->checkState() == Qt::Checked)
+        ui->listWidget->item(index.row())->setCheckState(Qt::Unchecked);
+    else
+        ui->listWidget->item(index.row())->setCheckState(Qt::Checked);
 }

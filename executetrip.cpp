@@ -1,10 +1,11 @@
 #include "executetrip.h"
 #include "ui_executetrip.h"
 
-executeTrip::executeTrip(std::vector<city*>& trip, QWidget *parent) :
+executeTrip::executeTrip(std::vector<city*>& trip, std::vector<int>& distances, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::executeTrip),
     trip( trip ),
+    distances( distances ),
     current_city_index( 0 )
 {
     ui->setupUi(this);
@@ -127,7 +128,7 @@ void executeTrip::on_pushButton_clicked()
         ui->sum_costLabel->setText("Total Cost of Trip: $" + QString::number(total, 'f', 2));
         ui->visited_List->setCurrentRow(0);
 
-        // setTotalDistance
+        ui->sum_distLabel->setText("Distance Traveled: " + QString::number(distance) + "km");
 
         ui->tripStack->setCurrentIndex(1);
 
@@ -137,8 +138,9 @@ void executeTrip::on_pushButton_clicked()
         if(current_city_index == int(trip.size() - 2))
             ui->pushButton->setText("Go To Trip Summary");
 
-        // distance +=;
+        distance += distances[current_city_index];
         current_city_index += 1;
+
 
         ui->boughtfoods->clear();
 
@@ -164,7 +166,7 @@ void executeTrip::on_pushButton_clicked()
             ui->tableWidget->resizeColumnToContents(0);
         }
 
-        // ui->distanceLabel->setText("Distance traveled: " + QString::number(distance) + "km");
+        ui->distanceLabel->setText("Distance traveled: " + QString::number(distance) + "km");
     }
 }
 

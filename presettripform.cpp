@@ -10,7 +10,9 @@ presettripform::presettripform(std::vector<city*>& cities, distanceTable_class& 
     ui->setupUi(this);
 
     refreshTripComboBox();
-    tp = new executeTrip(cities);
+
+    std::vector<int> deleteMe;
+    tp = new executeTrip(cities, deleteMe);
 }
 
 presettripform::~presettripform()

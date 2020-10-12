@@ -249,10 +249,12 @@ void MainWindow::on_recieveLogin(QString name)
     usr.name = name;
     usr.isAdmin = true;
 
-    if(name == "actual_monkey") {
+    setWindowTitle("S&S Vacation Planner - Logged in as: " + name);
+
+    if(name == "monkey") {
         usr.isMonkey = true;
-        QMessageBox monkeybox("Alert!",
-            "Be advised, a monkey has been detected on the system.",
+        QMessageBox monkeybox("Ooo OooO aaaA",
+            "A monkey has been detected on the system.",
             QMessageBox::NoIcon,
             QMessageBox::Ok | QMessageBox::Default,
             QMessageBox::No,
@@ -265,10 +267,10 @@ void MainWindow::on_recieveLogin(QString name)
         monkeybox.setIconPixmap(monkey);
         monkeybox.setWindowIcon(banana);
         monkeybox.exec();
+
     }
     else
         usr.isMonkey = false;
 
-    setWindowTitle("S&S Vacation Planner - Logged in as: " + name);
     adm->show();
 }

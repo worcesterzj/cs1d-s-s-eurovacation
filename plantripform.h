@@ -28,6 +28,8 @@ private slots:
 
     void on_executeButton_clicked();
 
+    void on_listWidget_doubleClicked(const QModelIndex &index);
+
 signals:
     void backButton_clicked();                              // Signal that emits when the backButton is clicked.
 
@@ -39,6 +41,7 @@ private:
 
     QString* starting_city{ nullptr };                  // starting_city    :   city*.........................City to start a trip at.
     std::vector<city*> trip;                            // trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form (see above).
+    std::vector<int> trip_distances;
     executeTrip *tp;                                    // tp       :   executeTrip&..........Ui for executeTrip.
 };
 
