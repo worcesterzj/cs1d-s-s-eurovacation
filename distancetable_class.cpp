@@ -72,7 +72,7 @@ int distanceTable_class::customClosestCityDistance (int Xcity, const std::vector
     return returnedDistance;
 }
 
-void distanceTable_class::getShortestTrip(const std::vector<city*> cities, std::vector<city*>& trip, std::vector<city*>& allowed) const	//trip will hold the sorted cities, addedCities is a vector of cities that have already been added to the trip(addedCities should just be an empty vector passed in, iteration is the current iteration of the recursive function(a 1 should be passed in for iteration when called)
+void distanceTable_class::getShortestTrip(const std::vector<city*>& cities, std::vector<city*>& trip, std::vector<city*>& allowed) const
     {
         trip.push_back(allowed[0]);
 
@@ -132,4 +132,12 @@ void distanceTable_class::addCity(std::vector<int> city_distances, int index){
     }
 
     vec.insert(vec.begin() + index, city_distances);
+}
+
+void distanceTable_class::deleteCity( int index){
+    for(int i = 0; i < int(vec.size()); i++){
+        vec[i].erase(vec[i].begin() + index);
+    }
+
+    vec.erase(vec.begin() + index);
 }

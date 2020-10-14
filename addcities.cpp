@@ -71,7 +71,8 @@ void addCities::on_deleteCity_pushButton_clicked()
                                                                                          + ui->cities_listWidget->currentItem()->text() + "\"?");
 
         if(reply == QMessageBox::Yes) {
-            cities.erase(cities.begin() + ui->cities_listWidget->row(ui->cities_listWidget->currentItem()));
+            cities.erase(cities.begin() + ui->cities_listWidget->currentRow());
+            distances.deleteCity(ui->cities_listWidget->currentRow());
             refreshLists();
         }
     }
@@ -227,7 +228,7 @@ void addCities::on_add_addDistances_clicked()
     ui->add_Stack->setCurrentIndex(1);
 }
 
-void addCities::on_pushButton_3_clicked()
+void addCities::on_add_back_clicked()
 {
     ui->add_Stack->setCurrentIndex(0);
 }

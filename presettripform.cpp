@@ -38,6 +38,8 @@ void presettripform::on_pushButton_clicked()
 
 void presettripform::on_executeButton_clicked()
 {
+
+
     tp->show();
 }
 

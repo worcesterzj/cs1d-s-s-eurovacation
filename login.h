@@ -30,7 +30,6 @@ signals:
 
 private:
     Ui::Login *ui;
-    QPoint offset;
 
     bool _loggedIn;
 };

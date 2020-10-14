@@ -193,7 +193,7 @@
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="add_back">
              <property name="text">
               <string>Back</string>
              </property>
@@ -377,6 +377,34 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>addCity_pushButton</tabstop>
+  <tabstop>editCity_pushButton</tabstop>
+  <tabstop>deleteCity_pushButton</tabstop>
+  <tabstop>write_Button</tabstop>
+  <tabstop>cities_listWidget</tabstop>
+  <tabstop>close_pushButton</tabstop>
+  <tabstop>add_setName</tabstop>
+  <tabstop>add_setCountry</tabstop>
+  <tabstop>add_addFood</tabstop>
+  <tabstop>add_deleteFood</tabstop>
+  <tabstop>edit_foodTable</tabstop>
+  <tabstop>editCities_namelineEdit</tabstop>
+  <tabstop>distance_Table</tabstop>
+  <tabstop>add_back</tabstop>
+  <tabstop>save_City</tabstop>
+  <tabstop>add_Cancel</tabstop>
+  <tabstop>edit_addFood</tabstop>
+  <tabstop>edit_deleteFood</tabstop>
+  <tabstop>add_addDistances</tabstop>
+  <tabstop>editCities_countrylineEdit</tabstop>
+  <tabstop>edit_editDistance</tabstop>
+  <tabstop>edit_Save</tabstop>
+  <tabstop>edit_Cancel</tabstop>
+  <tabstop>editCities_distBack</tabstop>
+  <tabstop>edit_Table</tabstop>
+  <tabstop>add_foodTable</tabstop>
+ </tabstops>
  <resources>
   <include location="resources.qrc"/>
  </resources>

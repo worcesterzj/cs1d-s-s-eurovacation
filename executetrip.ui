@@ -281,6 +281,15 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButton</tabstop>
+  <tabstop>cancel_Trip_button</tabstop>
+  <tabstop>boughtfoods</tabstop>
+  <tabstop>sum_End</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>visited_List</tabstop>
+  <tabstop>purchased_list</tabstop>
+ </tabstops>
  <resources>
   <include location="resources.qrc"/>
  </resources>
