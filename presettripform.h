@@ -43,6 +43,7 @@ private:
     std::vector<city*> Berlin_trip_b;
     std::vector<city*> Paris_trip;
 
+    std::vector<int> trip_distances;
     std::vector<city*> trip;
 
     executeTrip *tp;                            // tp       :   executeTrip&..........Ui for executeTrip.
