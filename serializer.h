@@ -19,8 +19,6 @@ public:
     //Riley
 void writeDistances(const std::vector<std::vector<int>>& adjacencyMatrix);
 
-private:
-
 };
 
 #endif // SERIALIZER_H

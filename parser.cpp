@@ -115,8 +115,6 @@ bool parser::read(std::vector<city*>& cities) {
 
     return true;
 }
-
-
 //Riley 10/10/2020
 bool parser::readDistances(std::vector<std::vector<int>>& adjacencyMatrix) {
     int thisLine = -1;

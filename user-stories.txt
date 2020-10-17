@@ -1,0 +1,420 @@
+Smith & Straus Agile User Stories
+Strauskulage Diebold, Riley Kuo, Nathan Smith, & Zachary Worcester
+
+
+#1 (List of countries/cities)
+As a <prospective traveler> I <want> <a list of European cities and their distance from Berlin to be displayed> so that <I can determine what options I have to travel to.>
+
+Descriptions: 
+A prospective traveler can look at a list of European cities. All of which would display the distance to Berlin (the starting city.) The cities will be displayed in a dropdown menu from a list of countries.
+
+Assumptions:
+There is a deque of Cities (a class, see UML class diagrams) that is read in from a file when the program starts. (Possibly use SQL Lite instead of deque)
+GUI will be developed in another story. (story: tbd)
+Tasks:
+Implement vectors of cities read in at start of program.
+Implement a QT list widget that displays the cities.
+
+Tests: 
+Verify that prospective travelers can see the countries/cities that they can potentially travel to from the main window.
+Verify that prospective traveler can then plan a trip they would like to take based on selected location
+Verify that administrators can modify the potential travel points.
+
+Assignee: 
+	
+
+Estimation: 
+	1
+
+Priority:
+	3
+
+Done:
+prospective travelers are able to view a list of European cities and their distance from Berlin
+
+#2 (List food in cities & city information)
+As a <prospective traveler> I <want> <a list of various foods offered as well as city information> so that <I can see what is offered in various cities before I plan my trip.>
+
+Descriptions: 
+When a prospective traveler clicks on a city in the QT list widget they will be able to see the variety of foods that are offered in that city in a separate information box widget. This will include the name of the food and the price in USD instead of Euros, as well as the name of the country it’s in and the distance from Berlin.
+
+Assumptions:
+This story builds off of story 1. As will be shown in the UML diagram, a City (class) has an array[6] of food items, which will be used in this story.
+		City of deques is built
+		Main screen is developed
+Tasks:
+The program displays a list of cities in a QT list widget, and then when a city is clicked on it will display the potential food options that are offered
+The prospective traveler will be able to see the name and price of food.
+
+Tests: 
+Compare the data displayed to the user to the input data and verify that they match
+Verify that prospective travelers can see the cities and the food they can potentially order there.
+Verify that prospective traveler can then view other food options they would like to order based on selected location
+
+Assignee: 
+	
+
+Estimation: 
+	1
+
+Priority:
+	4
+
+Done:
+prospective travelers are able to view various food options (based on city) in a QT information box widget
+prospective travelers can see both name and price of foods alongside the food names
+
+
+#3 (visit 11 initial European cities starting at Berlin)
+As a <prospective traveler> I <want> <to be able to plan a trip starting at berlin> so that <I can visit the 11 initial European cities and see the total distance traveled for my trip>
+
+Descriptions: 
+A prospective traveler can plan a trip starting at Berlin and visit the initial 11 European cities. The prospective traveler will be able to keep track of the total distance they traveled for their trip.
+
+Assumptions:
+This assumes that the program has a parser that can read in a “Trip” (deque of Cities). The parser reads in all the cities from a folder once the user has logged in. Included in the program are two “default Trips,” one of them being the trip mentioned here including this one.
+Tasks:
+The program will have the option for a “Go on a Trip” menu.
+The program will use an algorithm that will find the nearest city starting from Berlin in order to travel to the european cities in the most efficient order. It will recursively choose the closest city to the previous city. 
+The program will also allow for the prospective traveler to keep track of the total distance that they traveled for their trip and display it to them (Further expanded in Story #6).
+
+Tests: 
+Verify a prospective traveler can select the Berlin trip from the dropdown menu in “Go on a trip.”
+Verify that the recursive algorithm is traveling city to city in the most efficient order.
+Verify that the program is keeping track of the total distance that the prospective traveler has traveled and that it is being displayed to the prospective traveler.
+Assignee: 
+	Nathan
+
+Estimation: 
+	6
+
+Priority:
+	4
+
+Done:
+prospective travelers are able to choose this trip in their dropdown menu (start their trip in Berlin and visit the initial 11 European countries).
+prospective travelers are able to see the total distance that they have traveled displayed to them as they take the trip.
+All tasks and test conditions satisfied
+
+
+
+#4 (Shortest Trip - Paris)
+As a <prospective traveler> I <want> <to be able to plan the shortest trip starting in Paris> so that <I can obtain a number of cities I want to go to, then starting from Paris visit that number of cities I input as the shortest trip.>
+
+Detailed Description: 
+A prospective traveler can select the option to go on “default trips,” from a QT drop-down menu one of them being the “Shortest Trip - Paris” option. This option allows the prospective traveler to select a number of desired cities to visit in a QT list widget. Beginning in Paris, the prospective traveler will travel to the nearest city until they have visited the number of desired cities. In each city, they can purchase local cuisine.
+
+List of Tasks and Tests: 
+Tasks: Create a QT drop-down menu for the “Go on a Trip” option. 
+	Create an algorithm that recursively finds the nearest city starting from paris and stores them into a data structure of Cities, which will be visited. 
+Tests: Verify a prospective traveler can select this trip from the dropdown menu in “Go on a Trip.”
+
+Assumptions:
+This assumes that the program has a parser that can read in a “Trip” (deque of Cities). The parser reads in all the cities from a folder once the user has logged in. Included in the program are two “default Trips,” one of them being the trip mentioned here including this one.
+
+Assignee:
+	Zach
+
+Story Point Estimation:
+3
+
+Priority:
+	7
+
+Definition of Done: 
+Prospective travelers can click on “default trips” from a dropdown menu and the program will plan the most efficient trip starting from Paris.
+All tasks and test conditions satisfied
+
+#5 (Custom Trip)
+As a <prospective traveler> I <want> <to be able to plan the shortest trip starting in any European city and visiting all other European cities of my choice> so that <go on a custom trip with the cities I want to visit.>
+
+Detailed Description: 
+A prospective traveler can select the option to go on a “custom trip”. This option allows the prospective traveler to select a city from a QT drop-down menu to start their trip on in the “go on a trip” menu. They will have the option to select other cities they would like to visit on their custom trip. Beginning in the city of their choosing, the prospective traveler will travel to the nearest city on their selected list until they have visited all of their desired cities. In each city, they can purchase local cuisine (as mentioned in story #6).
+
+Tasks
+Create the GUI for the custom trip editor.
+Create an algorithm that recursively finds the nearest city starting from their selected starting city and stores them into a deque of Cities, which will be visited. 
+Create this option in the “Go on a Trip” QT drop-down menu.
+Create a display element that shows the prospective traveler the total distance traveled
+Tests: 
+Verify a prospective traveler can select this “custom trip” from the dropdown menu in “Go on a Trip.”
+Verify that the cities have been stored on the deque/stack.
+
+Assumptions
+That the prospective traveller can go on a trip from the starting city of the traveler’s choice.
+At each city the program will display all potential food choices available for purchase (as listed in story 2) 
+The food will be a class with name and price will be stored in a deque. The program will allow travelers to purchase multiple traditional foods from the cities they visit.
+The program will display the total distance traveled for the trip.
+
+
+Assignee:
+	Riley
+
+Story Point Estimation:
+8
+
+Priority:
+	6
+
+Definition of Done: 
+Prospective travelers will be able to select the “go on a trip” option. The prospective traveler can then select “custom trip” and select the preloaded city to start from. The prospective travelers will then select all the cities they want to travel to from a QT drop-down menu.
+All tasks and test conditions satisfied
+Display element shows accurate total distance traveled
+
+1 Estimation = 1 hour of individual programming time 
+
+#6 (Going on a Trip)
+As a <prospective traveler> I <want> <to be able to purchase and keep track of  food items purchased> so that <I can determine how many food items I bought and how much I spent in each city as well as see a grand total at the end.>
+
+Descriptions: 
+A prospective traveler can purchase multiple traditional food items from various cities and keep track of the number of  food items, the amount spent in each city, and a grand total spent from all visited cities.
+
+Tasks: 
+The program will display the city that they have traveled to. They will be able to purchase traditional food items from that city. The program will keep track of the total food items bought at each city, the amount spent in each city, and the grand total for the trip.
+
+Assumptions
+That the prospective traveller can go on a trip from the “Go on a trip” menu.
+At each city the program will display all potential food choices available for purchase (as listed in story 2) 
+The food will be a class with name and price will be stored in an array in a City
+Tests: 
+Verify that prospective travelers can purchase traditional food items from the cities they visit.
+Verify that the program is keeping track of the prospective traveler’s food items purchased at each city.
+Verify that the program is keeping track of the total spent in each city. 
+Verify that the program is keeping track of the grand total spent for the trip.
+
+Assignee: 
+	Nathan
+
+Estimation: 
+	5
+
+Priority:
+	5
+
+Done:
+prospective travelers are able to view various food options (based on city)
+prospective travelers can purchase multiple food options in different cities
+prospective travelers can see how much they spent in each city
+prospective travelers can see the grand total spent for their trip
+All tasks and test conditions satisfied
+
+
+#7 (Maintenance Part 1)
+As an <administrator> I <need> <to have the capability of adding new European cities and their corresponding food items> so that <the prospective traveler has an updated list of cities and food items to plan their trip with, and that new cities I add persist between runtimes.>
+
+Detailed Description: 
+An administrator can add new European cities and their corresponding food items to the existing list of available cities. Access to this administrator execution requires a password. New information added is saved between runtimes.
+
+Tasks
+Create an algorithm to only allow access to administrator functionality when a valid admin password is given.
+Create an algorithm that takes an input file and updates the list of available European cities and their corresponding food items
+Create a parser that reads and writes a “.cty” file that saves the new, custom cities.
+
+Assumptions
+That there will already be an existing cities and foods that can be added and modified
+That there will be a login screen UI that both traveler and admin can use
+That there will be a file to read from and append to for new travelers
+Tests: 
+Verify that administrative functionalities are only accessible to prospective travelers who input a valid admin password
+That prospective travelers are able to see the updated features and can use program accordingly
+
+Assignee:
+	Riley
+
+Story Point Estimation:
+3
+
+Priority:
+	8
+
+Definition of Done: 
+In the “Administrator” page, the prospective traveler is prompted for a password and gains access to administrator functions only when the password entered is valid.
+
+When the administrator selects an input file with the updated list of cities and their corresponding food items, the program will update its existing list of European cities and their corresponding food items.
+
+When prospective travelers can login and see the modified locations (as well as their respective food) 
+
+Traveler login will not be able to access the admin functionality or change any places
+
+1 Estimation = 1 hour of individual programming time 
+
+#8 (Maintenance Part 2)
+As an <administrator> I <need> <to have the capability of editing the prices of existing food items for an existing European city as well as adding and deleting food items for that city> so that <the prospective traveler has an updated list of food options and their prices for the respective city.>
+
+Detailed Description: 
+An administrator can edit the prices of traditional food items of an existing European city. The administrator can also add and delete traditional food items from an existing cities list.
+An administrator can also add new cities, and delete existing cities.
+
+Assumptions: 
+There is an existing vector of cities containing an array/vector of food(food is another class).
+The administrator is logged in as an administrator
+	
+Tasks:
+Create an algorithm that allows the administrator to directly edit, add, and delete food items from a cities existing list of traditional food items.
+Tests: 
+Verify that administrative functionalities are only accessible to prospective travelers who input a valid admin password
+Verify that the administrator can edit the prices of existing food items as well as add and delete food items
+Verify that the changes made to the food items for a city are properly saved and updated
+
+Assignee:
+	Riley
+
+Story Point Estimation:
+3
+
+Priority:
+	9
+
+Definition of Done: 
+In the “Administrator” page, the prospective traveler is prompted for a password and gains access to administrator functions only when the password entered is valid
+
+The administrator can edit the prices of existing food items as well as add and delete food items
+
+
+#9 (Visiting cities)
+As a <prospective traveler> I <want> <to be able to visit cities starting from Berlin> so that <I can go to the initial 13 cities starting in Berlin.>
+
+Descriptions: 
+When a prospective traveler is ready to “visit” the cities that they planned out they can go on a proverbial trip to said cities. The trip will start and end in Berlin. The prospective traveler will also be able to purchase food when they “visit” a city
+
+Assumptions:
+	There is an existing vector of cities containing an array/vector of food(food is another 
+class).
+
+Tasks: 
+The program displays where the prospective traveler has come and where they will go next on their “visit”
+They will be able to purchase food when they enter a city
+The program will decide most efficient path based on (recursively called) algorithm
+
+Tests: 
+Verify that prospective travelers can visit each of the cities in the trip plan that they made, starting the trip and ending the trip in Berlin.
+Verify that prospective traveler can purchase the appropriate food when they enter a city
+Verify that the program has made the most efficient path for the trip to take
+
+Assignee: 
+	Strauss
+
+Estimation: 
+	3
+
+Priority:
+	6
+
+Done:
+	Prospective travelers are able to visit 13 cities starting at berlin
+prospective travelers are able to view various food options (based on each city)
+prospective travelers can see both name and price of foods
+All tasks and test conditions satisfied
+
+#10 (Persistency of custom trips) (super low priority)
+As a <prospective traveler> I <need> <to be able to save a custom trip for later> so that <I can execute my custom trips at a later time, when I’m ready, or take a trip again.>
+
+Detailed Description: 
+A prospective traveler has the ability to create custom trips, as noted in story #5. When a prospective traveler creates a custom trip, they are given the option to either save their trip or immediately execute their trip. When they save their trip, it shows up in the “Go on a Trip” menu alongside the other preloaded trip options.
+
+Assumptions:
+A parser and serializer exists, as well as a standard “.trp” filetype that is read in at the beginning of the program. This is separate from the “cities” file that saves the program’s state.
+List of Tasks and Tests: 
+Tasks: Create a gui element for saving & loading custom trips. On startup, custom trips are loaded into the “Available Trips” data structure (a vector of Trips, which is a vector of Cities) and displayed in the “Go on a Trip” menu from a dropdown menu.
+	Create a serializer that saves the order of cities that are to be visited into a .trip file.
+	Create a parser to read the custom trips into the program at the launch.
+Tests: Verify a prospective traveler can save a trip from the “Custom Trip” menu.
+Verify a prospective traveler can load and edit a saved custom trip from the “Custom Trip” menu.
+Verify Parser correctly reads data from file.
+Verify Serializer correctly writes data to file.
+	Verify a prospective traveler can select a saved custom trip from the “Go on a Trip” menu.
+
+Assignee:
+	Zach
+
+Story Point Estimation:
+8
+
+Priority:
+	100000
+
+Definition of Done: 
+prospective travelers can load, edit, and save custom trips in the Trip Designer.
+prospective travelers can select saved custom trips in the trip designer.
+
+#11 (UML Diagrams)
+As a <programmer> I <need!> <a UML framework to base my work around> so that <I do not waste a ton of code attempting to code procedurally.>
+
+Detailed Description
+A plethora of UML Diagrams that will provide a skeletal framework for the function of the program. Three use cases, class diagrams for all classes, three state diagrams, & one activity diagram. Each of these diagrams will serve as a design for the program.
+List of Tasks: 
+Diagram out the Class Diagrams
+Diagram out the activity diagram.
+Diagram out the use cases.
+Diagram out the State diagram.
+
+Assignee:
+	Everyone (mostly)
+
+Story Point Estimation:
+5
+
+Priority:
+	2
+
+Definition of Done: 
+The above mentioned UML diagrams have been completed and are agreed upon.
+
+#12 (Main GUI)
+As a <prospective traveller> I <need> <a main GUI > so that <can navigate the program.>
+
+Detailed Description
+There will be a deque that stores the cities which will be displayed to the prospective traveller using QT widgets. There will be a login screen, and a main screen that allows you to select from the default, and a maintenance screen that allows you to edit the Cities available to the user (read from file as mentioned in story #7).
+Assumptions:
+	A deque of cities has been created (from story #1)
+List of Tasks:
+	Create a main screen
+Implement the list of cities using QT widgets and the deque of cities
+
+Assignee:
+	Everyone (mostly)
+
+Story Point Estimation:
+5
+
+Priority:
+	1
+
+Definition of Done: 
+The main GUI exists and can be navigated by the prospective traveller
+
+
+
+
+
+
+
+Baseline Story:
+#11 (UML Diagrams)
+As a <programmer> I <need!> <a UML framework to base my work around> so that <I do not waste a ton of code attempting to code procedurally.>
+
+Stories for Sprint 1:
+
+#12 (Main GUI) (Zach)(Nathan)
+As a <prospective traveller> I <need> <a main GUI > so that <can navigate the program.>*
+#11 (UML Diagrams)
+As a <programmer> I <need> <UML diagrams for every class and data structure> so that <I can implement them without having to ad hoc implement the data and potentially waste time on throw-away code.>
+#1 (List of cities) (Riley) (Zach)(Strauss)
+As a <prospective traveler> I <want> <a list of European cities to be displayed> so that <I can determine how far the city is from Berlin.>
+
+#2 (List food in cities) (Riley)(Nathan)(Strauss)
+As a <prospective traveler> I <want> <a list of various food offered> so that <I can plan my meals that I can get if I take said trip>
+
+Team Rules: 
+Each sprint has a goal, so focus on that sprint’s goal and not others.
+Don’t ignore bugs if you find them. Someone else may not!
+If you can’t make it to the biweekly meetings, let the group know in advance.
+Before pushing/merging, make sure everybody is on the same page.
+It is each team member’s responsibility to document their own code!!!
+
+Coding Standards:
+We will primarily be using QT to design the user interface and C++ for the coding/logic
+Comment logical blocks of code 
+Indent code properly
+If you have to use “auto,” justify it in comments.
+No “goto.” Never.

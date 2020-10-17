@@ -40,8 +40,6 @@ void serializer::write(const std::vector<city*>& cities) {
     }
 }
 
-
-
 void serializer::writeDistances(const std::vector<std::vector<int>>& adjacencyMatrix) {
 
     QString path("data/cities/");               // Path to point to in "working directory" (same directory as the program's .exe)
@@ -77,10 +75,3 @@ void serializer::writeDistances(const std::vector<std::vector<int>>& adjacencyMa
         std::clog << "dist.sas successfully written.";
     }
 }
-
-
-
-
-
-
-
