@@ -132,6 +132,13 @@ public:
      */
     void deleteCity(int index);
 
+    /**
+     * \brief getAdjMatrix
+     * Getter for a reference to the private vector within, to be used with the serializer only!
+     * @return A reference to vec.
+     */
+    std::vector<std::vector<int>>& getAdjMatrix();
+
 private:
 
     /**

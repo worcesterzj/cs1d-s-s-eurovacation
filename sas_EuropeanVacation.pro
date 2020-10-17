@@ -27,6 +27,7 @@ HEADERS += \
     DistanceTable.h \
     addcities.h \
     city.h \
+    delegators.h \
     distancetable_class.h \
     executetrip.h \
     food.h \

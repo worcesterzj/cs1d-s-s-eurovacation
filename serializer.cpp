@@ -57,13 +57,13 @@ void serializer::writeDistances(const std::vector<std::vector<int>>& adjacencyMa
         c << "@\n";
         c << adjacencyMatrix.size() << "\n";
 
-        for(int i = 0; i < adjacencyMatrix.size(); i++)
+        for(int i = 0; i < int(adjacencyMatrix.size()); i++)
         {
-            for(int j = 0; j < adjacencyMatrix.size(); j++)
+            for(int j = 0; j < int(adjacencyMatrix.size()); j++)
             {
                 c << adjacencyMatrix[i][j] << "\n";
             }
-            if(i != adjacencyMatrix.size() - 1)
+            if(i != int(adjacencyMatrix.size() - 1))
             {
             c << "#\n";
             }

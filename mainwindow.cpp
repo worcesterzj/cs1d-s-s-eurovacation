@@ -8,22 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
 
-    std::vector<std::vector<int>> temp_distances = {
-            { -1, 655, 236, 1395,361,2236,541,1767,430,878,1647, 1435, 1147},
-            { 655, -1, 765,873,288,2779,678,2392,1054,349, 1502, 1084, 640},
-            { 236, 765, -1, 1353,489,2357,403,1578,313,898,1483, 1564, 1104},
-            {1395,873,1353,-1,1163,3069,1707,2512,1485,525,1274, 1951, 243},
-            {361,288,489,1163,-1,2121,930,2171,376,640,1658, 1079, 930},
-            {2236,2279,2357,3069,2121,-1,2189,625,1736,2707,2510, 3610, 2867},
-            {541, 678, 403, 1707, 930, 2189, -1, 1719, 464, 1265, 1866, 1902, 1461},
-            {1767, 2392, 1578, 2512, 2171, 625, 1719, -1, 1633, 2312, 1951, 3141, 2401},
-            {430, 1054, 313, 1485, 376, 1736, 464, 1633, -1, 1030, 1442, 1185, 1236},
-            {878, 349, 898, 525, 640, 2707, 1265, 2312, 1030, -1, 1303, 1428, 331},
-            {1647, 1502, 1483, 1274, 1658, 2510, 1866, 1951, 1442, 1303, -1, 2546, 1120},
-            {1435, 1084, 1564, 1951, 1079, 3610, 1902, 3141, 1885, 1428, 2546, -1, 1758},
-            {1147, 640, 1104, 243, 930, 2867, 1461, 2401, 1236, 331, 1120, 1758, -1}
-            };
-
     //Riley 10/10/2020
     std::vector<std::vector<int>> adjacencyMatrix;
 
@@ -34,7 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
             exit(-1);
     }
       
-    p.readDistances(adjacencyMatrix);
+    if (!p.readDistances(adjacencyMatrix)){
+        QMessageBox::warning(this, "Critical read Error.", "The cit.sas file was read, but the dist.sas file failed to read.\nCheck data/cities in the program directory.",
+                             QMessageBox::Ok);
+        exit(-1);
+    }
+
     distances = adjacencyMatrix;
 
     std::sort(cities.begin(), cities.end(), compareCits); // sorts the cities alphabetically.
@@ -99,6 +88,7 @@ void MainWindow::refreshUI(){
     city *temp = nullptr;
     pl->refreshList();
 
+
     for(int j = 0; j < static_cast<int>(cities.size()); j++)
     {
         if(cities[j]->getName() == "Berlin")
@@ -107,15 +97,23 @@ void MainWindow::refreshUI(){
         }
     }
 
-    for(int j = 0; j < static_cast<int>(cities.size()); j++)
-    {
-        if(cities[j]->getName() == "Berlin")
+    if(temp != nullptr){
+        for(int j = 0; j < static_cast<int>(cities.size()); j++)
+        {
+            if(cities[j]->getName() == "Berlin")
+            {
+                ui->cityListWidget->addItem(cities[j]->getName());
+                continue;
+            }
+            city* tempCity = cities[j];
+            ui->cityListWidget->addItem(cities[j]->getName() + " (Distance to Berlin: " + QString::number(distances.getDistance(getCity_index(cities, temp), getCity_index(cities, tempCity))) + "km)");
+        }
+    }
+    else{
+        for(int j = 0; j < static_cast<int>(cities.size()); j++)
         {
             ui->cityListWidget->addItem(cities[j]->getName());
-            continue;
         }
-        city* tempCity = cities[j];
-        ui->cityListWidget->addItem(cities[j]->getName() + " (Distance to Berlin: " + QString::number(distances.getDistance(getCity_index(cities, temp), getCity_index(cities, tempCity))) + "km)");
     }
 }
 
@@ -145,6 +143,7 @@ void MainWindow::on_recieveBackSignal() {
 
 void MainWindow::on_recieveTripSignal() {
     // pt->refreshList();
+    pt->refreshTripComboBox();
     ui->stackedWidget->setCurrentWidget(pt);
 }
 

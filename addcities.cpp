@@ -204,8 +204,14 @@ void addCities::on_edit_Save_clicked()
 void addCities::on_addCity_pushButton_clicked()
 {
     setWindowTitle("Add New City");
+    ui->add_setName->clear();
+    ui->add_setCountry->clear();
+    ui->add_foodTable->clear();
+    ui->distance_Table->clear();
 
     ui->distance_Table->setRowCount(int(cities.size()));
+
+
 
     for(int i = 0; i < int(cities.size()); i++)
         ui->distance_Table->setVerticalHeaderItem(i, new QTableWidgetItem(cities[i]->getName()));
@@ -257,6 +263,12 @@ void addCities::on_add_addFood_clicked()
 
 void addCities::on_save_City_clicked()
 {
+    for(int i = 0; i < int(cities.size()); i++){
+        if(cities[i]->getName().toLower() == ui->add_setName->text().toLower()){
+            QMessageBox::information(this, "Uh oh!", "City already exists. Could not add duplicate city.");
+            return;
+        }
+    }
 
     for(int i = 0; i < ui->distance_Table->rowCount(); i++){
         if(!ui->distance_Table->item(i,0) || ui->distance_Table->item(i,0)->text() == "") {

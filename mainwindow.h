@@ -115,5 +115,6 @@ private:
      * reads in from file, with the help of a parser, to initialize all of the distances that the cities and trips will use to determine distances
      */    
     distanceTable_class distances;          // distances        :   vector<vector<int>>...........Vector of vector of int. Stores the distances between cities.
+
 };
 #endif // MAINWINDOW_H

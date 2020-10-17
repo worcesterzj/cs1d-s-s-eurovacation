@@ -119,4 +119,5 @@ private:
      * A vector of food items.
      */
     std::vector<food*> foodItems;
+
 };

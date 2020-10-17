@@ -141,3 +141,8 @@ void distanceTable_class::deleteCity( int index){
 
     vec.erase(vec.begin() + index);
 }
+
+std::vector<std::vector<int>>& distanceTable_class::getAdjMatrix()
+{
+    return vec;
+}
