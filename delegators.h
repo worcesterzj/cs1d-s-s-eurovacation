@@ -1,3 +1,7 @@
+/** \file city.h
+ * \brief Contains two delegator classes for user input validation in QTableWidgets.
+ */
+
 #ifndef DELEGATORS_H
 #define DELEGATORS_H
 

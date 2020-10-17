@@ -28,6 +28,7 @@ presettripform::~presettripform()
 void presettripform::refreshTripComboBox(){
     ui->presetTripComboBox->clear();
 
+    ui->numberCities_Label->clear();
     ui->numberCities_Label->setVisible(false);
     ui->numberCities_lineEdit->setVisible(false);
 
