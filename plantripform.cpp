@@ -20,7 +20,6 @@ planTripForm::planTripForm(std::vector<city*>& cities, distanceTable_class& dist
 
 planTripForm::~planTripForm()
 {
-    delete starting_city;
     delete tp;
     delete ui;
 }

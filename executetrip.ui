@@ -94,6 +94,9 @@
          </item>
          <item>
           <widget class="QLabel" name="label">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Double click an item to remove it from the cart.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="text">
             <string>Purchased Foods</string>
            </property>
@@ -131,7 +134,7 @@
           </layout>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="nextCity">
            <property name="text">
             <string>Go to next city</string>
            </property>
@@ -282,7 +285,7 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>pushButton</tabstop>
+  <tabstop>nextCity</tabstop>
   <tabstop>cancel_Trip_button</tabstop>
   <tabstop>boughtfoods</tabstop>
   <tabstop>sum_End</tabstop>

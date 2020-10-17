@@ -20,9 +20,9 @@ void executeTrip::initialize_Trip()
 {
     ui->tripStack->setCurrentIndex(0);
     if(int(trip.size()) == 1)
-        ui->pushButton->setText("Go To Trip Summary");
+        ui->nextCity->setText("Go To Trip Summary");
     else
-        ui->pushButton->setText("Go To Next City");
+        ui->nextCity->setText("Go To Next City");
 
     current_city_index = 0;
     total = 0;
@@ -113,7 +113,7 @@ void executeTrip::on_boughtfoods_doubleClicked(const QModelIndex &index)
     ui->costLabel->setText("Total Cost: " + QString::number(total, 'f', 2));
 }
 
-void executeTrip::on_pushButton_clicked()
+void executeTrip::on_nextCity_clicked()
 {
     if(current_city_index == int(trip.size() - 1)){
 
@@ -136,7 +136,7 @@ void executeTrip::on_pushButton_clicked()
     else
     {
         if(current_city_index == int(trip.size() - 2))
-            ui->pushButton->setText("Go To Trip Summary");
+            ui->nextCity->setText("Go To Trip Summary");
 
         distance += distances[current_city_index];
         current_city_index += 1;
