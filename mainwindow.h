@@ -1,3 +1,7 @@
+  
+/** \file mainwindow.h
+ * \brief Contains the implementation of mainwindow.
+ */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -55,17 +59,53 @@ public:
     ~MainWindow();
 
 private slots:
+    /**
+     * \brief on_cityListWidget_itemSelectionChanged
+     * takes signal when a different item in the cities list is changed then refreshes
+     */
     void on_cityListWidget_itemSelectionChanged();      // Slot that recieves the signal when an item in the list of cities (see cityListWidget, mainwindow.ui) is changed.
-
+    
+    /**
+     * \brief on_recievePlanSignal
+     * switchs to the custom trip form to show its UI
+     */
     void on_recievePlanSignal();                        // Slot that recieves the signal to switch to Custom Trip form.
+    
+    /**
+     * \brief on_recieveTripSignal
+     * switches to the preset trip form to show its ui
+     */
     void on_recieveTripSignal();                        // Slot that recieves the signal to switch to Preset Trip form.
+    
+     /**
+     * \brief on_recieveBackSignal
+     * receives signal in order to switch back to the main window (from custom/trip UI)
+     */
     void on_recieveBackSignal();                        // Slot that recieves the signal to switch back to Form Select from Custom Trip or Preset Trip form.
+    
+     /**
+     * \brief refreshUI
+     * Refresh the UI in MainWindow
+     */
     void refreshUI();                                   // Slot that recieves the signal to refresh ui lists.
 
+    /**
+     * \brief on_exitButton_clicked
+     * simply terminates the program
+     */
     void on_exitButton_clicked();                       // Exit the program.
-
+    
+    /**
+     * \brief on_toolButton_clicked
+     * 
+     */
     void on_toolButton_clicked();
-
+    
+    /**
+     * \brief on_recieveLogin
+     * Used to display the login UI and determine a succesful login (of an administrator)
+     * @param name The name of the login info to see succesful login
+     */
     void on_recieveLogin(QString name);                             // Slot that recieves the signal that indicates a successful login.
 
 private:
