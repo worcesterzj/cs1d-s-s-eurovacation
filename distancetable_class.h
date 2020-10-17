@@ -140,5 +140,4 @@ private:
      */
     std::vector<std::vector<int>> vec;
 };
-
 #endif // DISTANCETABLE_CLASS_H

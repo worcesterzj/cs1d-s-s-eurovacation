@@ -16,7 +16,8 @@ public:
 
     void write(const std::vector<city*>&);
 
-private:
+    //Riley
+void writeDistances(const std::vector<std::vector<int>>& adjacencyMatrix);
 
 };
 

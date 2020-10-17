@@ -16,6 +16,11 @@ public:
     parser();
 
     bool read(std::vector<city*>&);
+
+    //Riley 10/10/2020
+    bool readDistances(std::vector<std::vector<int>>& adjacencyMatrix);
+
+    void printAdjMatrix(std::vector<std::vector<int>>& adjacencyMatrix);
 };
 
 #endif // PARSER_H

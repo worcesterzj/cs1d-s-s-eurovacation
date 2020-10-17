@@ -39,3 +39,39 @@ void serializer::write(const std::vector<city*>& cities) {
         std::clog << "cit.sas successfully written.";
     }
 }
+
+void serializer::writeDistances(const std::vector<std::vector<int>>& adjacencyMatrix) {
+
+    QString path("data/cities/");               // Path to point to in "working directory" (same directory as the program's .exe)
+    QDir dir;                                   // Qt Directory manager
+
+    if(!dir.exists(path))                       // If the directory doesn't exist,
+        dir.mkpath(path);                       // MAKE IT EXIST!!
+
+    QFile cityout(path + "dist.sas");            // Path to the thingy
+    QTextStream c(&cityout);
+
+    if (!cityout.open(QIODevice::WriteOnly | QIODevice::Text))
+        std::clog << "No dist.sas file found!\n";
+    else{
+        c << "@\n";
+        c << adjacencyMatrix.size() << "\n";
+
+        for(int i = 0; i < adjacencyMatrix.size(); i++)
+        {
+            for(int j = 0; j < adjacencyMatrix.size(); j++)
+            {
+                c << adjacencyMatrix[i][j] << "\n";
+            }
+            if(i != adjacencyMatrix.size() - 1)
+            {
+            c << "#\n";
+            }
+
+
+        }
+
+        cityout.close();
+        std::clog << "dist.sas successfully written.";
+    }
+}

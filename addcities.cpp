@@ -71,6 +71,7 @@ void addCities::on_deleteCity_pushButton_clicked()
                                                                                          + ui->cities_listWidget->currentItem()->text() + "\"?");
 
         if(reply == QMessageBox::Yes) {
+
             cities.erase(cities.begin() + ui->cities_listWidget->currentRow());
             distances.deleteCity(ui->cities_listWidget->currentRow());
             refreshLists();
@@ -228,6 +229,7 @@ void addCities::on_add_addDistances_clicked()
     ui->add_Stack->setCurrentIndex(1);
 }
 
+
 void addCities::on_add_back_clicked()
 {
     ui->add_Stack->setCurrentIndex(0);
@@ -316,6 +318,8 @@ void addCities::on_write_Button_clicked()
         serializer s;
 
         s.write(cities);
+        //Riley
+        s.writeDistances(distances.getAdjMatrix());
 
         QMessageBox::information(this, "Saved.", "The data was saved.", QMessageBox::Ok);
     }

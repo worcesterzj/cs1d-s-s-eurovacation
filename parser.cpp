@@ -115,3 +115,88 @@ bool parser::read(std::vector<city*>& cities) {
 
     return true;
 }
+//Riley 10/10/2020
+bool parser::readDistances(std::vector<std::vector<int>>& adjacencyMatrix) {
+    int thisLine = -1;
+    int cityRowIndex = 0;
+     int cityColIndex = 0;
+     int numCities = 0;
+     int matrixSize = 0;
+
+
+
+
+
+    QString path("data/cities/");               // Path to point to in "working directory" (same directory as the program's .exe)
+    QDir dir;                                   // Qt Directory manager
+
+    if(!dir.exists(path))                       // If the directory doesn't exist,
+        dir.mkpath(path);                       // MAKE IT EXIST!!
+
+    QFile cityin(path + "dist.sas");            // Path to the thingy
+    QTextStream c(&cityin);
+
+    if (!cityin.open(QIODevice::ReadOnly | QIODevice::Text))
+        std::clog << "No dist.sas file found!\n";
+    else{
+
+        //Read in the matrix size from file
+        QString firstLine = c.readLine();
+        if(firstLine[0] == '@')
+        {
+            matrixSize = c.readLine().toInt();
+
+        }
+
+        std::vector<std::vector<int>> tempAdjacencyMatrix( matrixSize , std::vector<int> (matrixSize));  //create a 2d vector of size (matrixSize x matrixSize)
+
+        while(!c.atEnd()){
+
+            QString line = c.readLine();
+            thisLine++;
+
+            if(line[0] == '#')
+            {
+                cityRowIndex++;    //moving to the next city's distances
+                cityColIndex = 0;
+                continue;
+            }
+
+                tempAdjacencyMatrix[cityRowIndex][cityColIndex] = line.toInt();
+                cityColIndex++;
+
+        }
+
+        cityin.close();
+
+        adjacencyMatrix = tempAdjacencyMatrix;  //Copy the filled tempAdjacencyMatrix over to the passed in adjacencyMatrix
+
+
+    }
+
+    std::clog << "dist.sas successfully read.\n";
+
+
+
+    return true;
+}
+
+//Function to print the adjacency matrix for error checking
+void printAdjMatrix(std::vector<std::vector<int>>& adjacencyMatrix)
+{
+    for(int i = 0; i < adjacencyMatrix.size(); i ++)
+    {
+        std::cout << "[";
+        for(int j = 0; j < adjacencyMatrix.size(); j++)
+        {
+            std::cout << adjacencyMatrix[i][j];
+            if(j != adjacencyMatrix.size()-1)
+            {
+                std::cout << ", ";
+            }
+        }
+        std::cout << "]" << endl;
+
+
+    }
+}

@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    // START OF DEBUG STUFF!
 
     std::vector<std::vector<int>> temp_distances = {
             { -1, 655, 236, 1395,361,2236,541,1767,430,878,1647, 1435, 1147},
@@ -25,9 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
             {1147, 640, 1104, 243, 930, 2867, 1461, 2401, 1236, 331, 1120, 1758, -1}
             };
 
-    distances = temp_distances;
-
-    // END OF DEBUG STUFF!
+    //Riley 10/10/2020
+    std::vector<std::vector<int>> adjacencyMatrix;
 
     parser p;
     if (!p.read(cities)){
@@ -35,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
         if (reply == QMessageBox::StandardButton::Abort)
             exit(-1);
     }
+      
+    p.readDistances(adjacencyMatrix);
+    distances = adjacencyMatrix;
 
     std::sort(cities.begin(), cities.end(), compareCits); // sorts the cities alphabetically.
 
@@ -90,6 +91,7 @@ MainWindow::~MainWindow()
         cities.pop_back();
         delete a;
     }
+
 }
 
 void MainWindow::refreshUI(){
