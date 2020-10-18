@@ -91,7 +91,7 @@ void MainWindow::refreshUI(){
 
     for(int j = 0; j < static_cast<int>(cities.size()); j++)
     {
-        if(cities[j]->getName() == "Berlin")
+        if(cities[j]->getName().toLower() == "berlin")
         {
             temp = cities[j];
         }
@@ -100,7 +100,7 @@ void MainWindow::refreshUI(){
     if(temp != nullptr){
         for(int j = 0; j < static_cast<int>(cities.size()); j++)
         {
-            if(cities[j]->getName() == "Berlin")
+            if(cities[j]->getName().toLower() == "berlin")
             {
                 ui->cityListWidget->addItem(cities[j]->getName());
                 continue;

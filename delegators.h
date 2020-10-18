@@ -11,7 +11,7 @@
 /**
  * \brief Delegates distance input.
  */
-/*! Prevents users from inputting nonsense into the distance fields. A distance will always be an integer between 0-2147483647
+/*! Prevents users from inputting nonsense into the distance fields. A distance will always be an integer between 0–2147483647
  */
 class distance_delegator
         : public QItemDelegate
@@ -39,7 +39,7 @@ public:
 /**
  * \brief Delegates price input.
  */
-/*! Prevents users from inputting nonsense into the price fields. A price will always be a number between 0-2147483647 with only 2 mantissa values.
+/*! Prevents users from inputting nonsense into the price fields. A price will always be a number between 0–2147483647 with only 2 mantissa values.
  */
 class price_delegator
         : public QItemDelegate

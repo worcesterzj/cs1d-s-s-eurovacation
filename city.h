@@ -8,7 +8,7 @@
 #include "food.h"
 
 /**
- * \brief A class taht represents a city. Contains food also!
+ * \brief A class that represents a city. Contains food also!
  */
  /*! The "city" class has three private members:\n
  * name             :   QString................A name of the city.\n

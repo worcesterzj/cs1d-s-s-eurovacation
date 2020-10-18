@@ -104,7 +104,7 @@ void presettripform::on_executeButton_clicked()
 
         if(int(checkedCity.size()) != 0) {
             for(int i = 0; i < int(cities.size()); i++){
-                if(cities[i]->getName() == "amsterdam" ||
+                if(cities[i]->getName().toLower() == "amsterdam" ||
                         cities[i]->getName().toLower() == "brussels" ||
                         cities[i]->getName().toLower() == "budapest" ||
                         cities[i]->getName().toLower() == "hamburg" ||
