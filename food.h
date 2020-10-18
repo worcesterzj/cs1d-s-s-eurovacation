@@ -6,6 +6,14 @@
 
 #include <QString>
 
+/**
+ * \brief A food.
+ * The "food" class has two private members:
+ * name                         :   QString................name of the food.
+ * price                        :   Double................price of the food.
+ *
+ * The food class provides name and price. It is used to for food items.
+ */
 class food
 {
 public:

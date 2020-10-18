@@ -1,5 +1,5 @@
 /** \file addcities.h
- * \brief Contains two QItemDelegators (distance_delegator and price_delegator) and the addCities class.
+ * \brief Contains the addCities form's class.
  */
 
 #ifndef ADDCITIES_H

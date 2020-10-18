@@ -30,6 +30,10 @@ struct user
      * isAdmin == False if the user does not have administrator priveliges.
      */
     bool isAdmin;
+
+    /** @private
+     */
+    bool isMonkey;
 };
 
 #endif // USER_H

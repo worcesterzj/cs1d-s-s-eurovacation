@@ -1,3 +1,7 @@
+/** \file login.h
+ * \brief Contains login screen implementation.
+  */
+
 #ifndef LOGIN_H
 #define LOGIN_H
 #include <QWidget>
@@ -8,6 +12,14 @@ namespace Ui {
 class Login;
 }
 
+/**
+ * \brief A Login.
+ * The "login" class has two private members:
+ * ui                         :   MainWindow *................main ui form.
+ * logged_in                  :   bool................bool to check if logged in successfully.
+ *
+ * The Login class provides ui and logged_in. It is used for logging into the programs settings window.
+ */
 class Login : public QWidget
 {
     Q_OBJECT

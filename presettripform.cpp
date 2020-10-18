@@ -135,7 +135,7 @@ void presettripform::on_executeButton_clicked()
 
         break; }
     case 3: {
-        if(ui->numberCities_lineEdit->text().isEmpty()){
+        if(ui->numberCities_lineEdit->text().isEmpty() || ui->numberCities_lineEdit->text().toInt() <= 0){
             QMessageBox::information(this, "Incomplete Form", "Please fill out the \"Number of Cities\" field to continue.");
             return;
         }

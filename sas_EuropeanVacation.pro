@@ -24,7 +24,6 @@ SOURCES += \
     serializer.cpp
 
 HEADERS += \
-    DistanceTable.h \
     addcities.h \
     city.h \
     delegators.h \
