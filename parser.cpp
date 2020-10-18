@@ -17,8 +17,10 @@ bool parser::read(std::vector<city*>& cities) {
     QFile cityin(path + "cit.sas");            // Path to the thingy
     QTextStream c(&cityin);
 
-    if (!cityin.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!cityin.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::clog << "No cit.sas file found!\n";
+        return false;
+    }
     else{
 
         std::vector<city*> temp;
@@ -136,8 +138,10 @@ bool parser::readDistances(std::vector<std::vector<int>>& adjacencyMatrix) {
     QFile cityin(path + "dist.sas");            // Path to the thingy
     QTextStream c(&cityin);
 
-    if (!cityin.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!cityin.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::clog << "No dist.sas file found!\n";
+        return false;
+    }
     else{
 
         //Read in the matrix size from file
@@ -184,13 +188,13 @@ bool parser::readDistances(std::vector<std::vector<int>>& adjacencyMatrix) {
 //Function to print the adjacency matrix for error checking
 void printAdjMatrix(std::vector<std::vector<int>>& adjacencyMatrix)
 {
-    for(int i = 0; i < adjacencyMatrix.size(); i ++)
+    for(int i = 0; i < int(adjacencyMatrix.size()); i ++)
     {
         std::cout << "[";
-        for(int j = 0; j < adjacencyMatrix.size(); j++)
+        for(int j = 0; j < int(adjacencyMatrix.size()); j++)
         {
             std::cout << adjacencyMatrix[i][j];
-            if(j != adjacencyMatrix.size()-1)
+            if(j != int(adjacencyMatrix.size()-1))
             {
                 std::cout << ", ";
             }
