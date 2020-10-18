@@ -16,16 +16,18 @@ class presettripform;
 }
 
 /**
- * \brief A QWidget window to plan a custom trip.
- * ui               :   planTripForm*..........Plan Trip form
- * cities           :   const vector<city*>&...Reference to the vector, passed from MainWindow.
- * Berlin_Trip_A    :   vector<city*>...........Vector cities in a trip, passed to execute trip form
- * Berlin_Trip_B    :   vector<city*>...........Vector cities in a trip, passed to execute trip form
- * Paris_Trip       :   vector<city*>...........Vector cities in a trip, passed to execute trip form
- * trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form.
- * distances        :   distanceTable_class&......................Reference to the distance table from MainWindow.
- * trip_distances   :   vector<int>.....................vectors of ints used to determine distances between cities
- * tp               :   executeTrip&..........Ui for executeTrip.
+ * \brief A QWidget window to plan a preset trip.
+ */
+/*! ui               :   planTripForm*..........Plan Trip form\n
+ * cities           :   const vector<city*>&...Reference to the vector, passed from MainWindow.\n
+ * Berlin_Trip_A    :   vector<city*>...........Vector cities in a trip, passed to execute trip form.\n
+ * Berlin_Trip_B    :   vector<city*>...........Vector cities in a trip, passed to execute trip form.\n
+ * Paris_Trip       :   vector<city*>...........Vector cities in a trip, passed to execute trip form.\n
+ * trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form.\n
+ * distances        :   distanceTable_class&......................Reference to the distance table from MainWindow.\n
+ * trip_distances   :   vector<int>.....................vectors of ints used to determine distances between cities.\n
+ * tp               :   executeTrip&..........Ui for executeTrip.\n\n
+ * presettripform provides functionality for preset trip selection.
  */
 class presettripform : public QWidget
 {
@@ -76,7 +78,7 @@ private slots:
 
 signals:
     /**
-      *\brief backButton_clicked
+      *\brief Signal for backButton.
       * closes the presettripwindow and goes back to the main window UI
       */
     void backButton_clicked();

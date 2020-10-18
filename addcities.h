@@ -22,9 +22,11 @@ class addCities;
 
 /**
  * \brief A QWidget window to add cities in.
- * ui               :   addCities*................................Pointer to the ui parent.
- * edit_row_index   :   int.......................................Index of the current city being edited.
- * cities           :   vector<city*>&............................Reference to the vector of cities from MainWindow.
+ */
+/*! The "addCities" class as four private data members:\n
+ * ui               :   addCities*................................Pointer to the ui parent.\n
+ * edit_row_index   :   int.......................................Index of the current city being edited.\n
+ * cities           :   vector<city*>&............................Reference to the vector of cities from MainWindow.\n
  * distances        :   distanceTable_class&......................Reference to the distance table from MainWindow.
  */
 class addCities : public QWidget

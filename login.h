@@ -13,11 +13,11 @@ class Login;
 }
 
 /**
- * \brief A Login.
- * The "login" class has two private members:
- * ui                         :   MainWindow *................main ui form.
- * logged_in                  :   bool................bool to check if logged in successfully.
- *
+ * \brief A form to represent the login screen.
+ */
+/*! The "login" class has two private members:\n
+ * ui                         :   MainWindow *................main ui form.\n
+ * logged_in                  :   bool................bool to check if logged in successfully.\n\n
  * The Login class provides ui and logged_in. It is used for logging into the programs settings window.
  */
 class Login : public QWidget
@@ -52,7 +52,8 @@ private slots:
 signals:
     /**
      * @brief loginSuccess signal
-     * @param name username
+     * @param name Username.
+     * Signal that emits when a successful login was achieved. Passes the username as a data member.
      */
     void loginSuccess(QString name);
 

@@ -8,14 +8,15 @@
 #include "food.h"
 
 /**
- * \brief A city.
- * The "city" class has three private members:
- * name             :   QString................A name of the city.
- * parentCountry    :   QString................A name of the country that the city resides in.
- * foodItems        :   vector<food*>..........A vector of dynamically allocated food (see food.h).
+ * \brief A class taht represents a city. Contains food also!
+ */
+ /*! The "city" class has three private members:\n
+ * name             :   QString................A name of the city.\n
+ * parentCountry    :   QString................A name of the country that the city resides in.\n
+ * foodItems        :   vector<food*>..........A vector of dynamically allocated food (see food.h).\n
  *
- * The city class provides a name, as well as a list of food to be displayed while inside of a city (going on a trip)
- * and while selected in a list.
+ * The city class provides a name, as well as a list of food to be displayed while inside of a city (going on a trip)\n
+ * and while selected in a list.\n
  */
 class city
 {

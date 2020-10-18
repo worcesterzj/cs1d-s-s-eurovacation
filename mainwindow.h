@@ -26,19 +26,19 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 /**
-* \brief MainWindow.
-* mainwindow has 9 private members all to help run the various windows and behind the scenes action
-* ui               :   MainWindow*...................Main Ui Form.
-* sel              :   selectForm*...................Form to select between custom trip and preset trip forms.
-* pl               :   planTripForm*.................Custom trip form.
-* pt               :   presettripform*...............Preset trip form.
-* adm              :   addCities*....................Admin area.
-* lgn              :   Login*........................Login window
-* usr              :   User*.........................User status
-* cities           :   vector<city*>.................Vector of cities, read in at the begining of the program.
-* distances        :   vector<vector<int>>...........Vector of vector of int. Stores the distances between cities.
-*
-* The mainwindow helps contain all of the other windows and governs the entire programm. This provides the intial ui and 
+* \brief Main Window form. Provides a hub for accessing all other functionality.
+*/
+/*! MainWindow has 9 private members all to help run the various windows and behind the scenes action\n
+* ui               :   MainWindow*...................Main Ui Form.\n
+* sel              :   selectForm*...................Form to select between custom trip and preset trip forms.\n
+* pl               :   planTripForm*.................Custom trip form.\n
+* pt               :   presettripform*...............Preset trip form.\n
+* adm              :   addCities*....................Admin area.\n
+* lgn              :   Login*........................Login window.\n
+* usr              :   User*.........................User status.\n
+* cities           :   vector<city*>.................Vector of cities, read in at the begining of the program.\n
+* distances        :   vector<vector<int>>...........Vector of vector of int. Stores the distances between cities.\n\n
+* The mainwindow helps contain all of the other windows and governs the entire programm. This provides the intial ui and \n
 * well as the other ui when they are called.
 */
 class MainWindow : public QMainWindow
@@ -91,13 +91,13 @@ private slots:
 
     /**
      * \brief on_exitButton_clicked
-     * simply terminates the program
+     * Simply terminates the program.
      */
     void on_exitButton_clicked();                       // Exit the program.
     
     /**
      * \brief on_toolButton_clicked
-     * 
+     * If user is logged in, goes to admin area. Otherwise first goes to login screen.
      */
     void on_toolButton_clicked();
     

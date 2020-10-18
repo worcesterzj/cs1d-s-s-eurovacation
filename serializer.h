@@ -15,9 +15,9 @@
 
 
 /**
- * \brief A serializer to write data to file.
- * The "city" class has no private members:
- *
+ * \brief A serializer to write data to and from a .sas file found in data/cities.
+ */
+/*! The "city" class has no private members.\n\n
  * The serializer class contains functions to write the cities, their respective food items, and their distances to other cities to file.
  */
 class serializer

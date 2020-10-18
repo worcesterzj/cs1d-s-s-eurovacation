@@ -16,8 +16,8 @@
 
 /**
  * \brief A parser that reads in data from file.
- * The "parser" class has no private members:
- *
+ */
+/*! The "parser" class has no private members.\n\n
  * The parser class reads in cities, their respective food items, and distances to other cities from file.
  */
 

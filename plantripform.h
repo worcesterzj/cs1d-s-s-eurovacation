@@ -17,12 +17,14 @@ class planTripForm;
 
 /**
  * \brief A QWidget window to plan a custom trip.
- * ui               :   planTripForm*..........Plan Trip form
- * cities           :   const vector<city*>&...Reference to the vector, passed from MainWindow.
- * trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form.
- * distances        :   distanceTable_class&......................Reference to the distance table from MainWindow.
- * trip_distances   :   vector<int>.....................vectors of ints used to determine distances between cities
- * tp               :   executeTrip&..........Ui for executeTrip.
+ */
+/*! ui               :   planTripForm*..........Plan Trip form.\n
+ * cities           :   const vector<city*>&...Reference to the vector, passed from MainWindow.\n
+ * trip             :   vector<city*>.................Vector cities in a trip, passed to execute trip form.\n
+ * distances        :   distanceTable_class&......................Reference to the distance table from MainWindow.\n
+ * trip_distances   :   vector<int>.....................vectors of ints used to determine distances between cities.\n
+ * tp               :   executeTrip&..........Ui for executeTrip.\n\n
+ * planTripForm provides a functionality for custom trips.
  */
 class planTripForm : public QWidget
 {
@@ -31,7 +33,7 @@ class planTripForm : public QWidget
 public:
      /**
      *\brief planTripForm
-     * overloaded constructor to initialize all needed data members
+     * Overloaded constructor to initialize all needed data members.
      * @param cities The vector of cities being passed to this window.
      * @param distances The adjacency matrix being passed to this window.
      * @param parent The parent widget (for ui).
@@ -51,34 +53,34 @@ public:
 private slots:
       /**
       *\brief on_backButton_clicked
-      * closes the plan trip window and goes back to the main window UI
+      * Closes the plan trip window and goes back to the main window UI.
       */
     void on_backButton_clicked();                           // Slot that recieves a signal when the backButton is clicked, emits backButton_clicked() to MainWindow.
 
       /**
       *\brief on_comboBox_currentIndexChanged
-      * used to select the starting city (and eliminate duplicate selection) and then is used in execute_trip
+      * Used to select the starting city (and eliminate duplicate selection) and then is used in execute_trip.
       * @param index the current number the Qcombobox is on to preform the aformentioned functions
       */
     void on_comboBox_currentIndexChanged(int index);        // Slot that recieves an index being selected in plantripform.ui's comboBox.
     
     /**
       *\brief on_executeButton_clicked
-      * opens the execute trip UI along with the all the neccesary variables to complete said trip (trip & trip_distances)
+      * Opens the execute trip UI along with the all the neccesary variables to complete said trip (trip & trip_distances).
       */
     void on_executeButton_clicked();
 
     /**
       *\brief on_listWidget_doubleClicked
-      * when an entry is double clicked it becomes checked or unchecked. used to determine what cites will be traveled to.
-      * @param index which entry out of list that becomes checked or unchecked
+      * When an entry is double clicked it becomes checked or unchecked. used to determine what cites will be traveled to.
+      * @param index Which entry out of list that becomes checked or unchecked.
       */
     void on_listWidget_doubleClicked(const QModelIndex &index);
 
 signals:
     /**
-      *\brief backButton_clicked
-      * closes the plantripform UI and sends user back to the main window
+      *\brief Signal for ackButton
+      * Closes the plantripform UI and sends user back to the main window.
       */
     void backButton_clicked();                              // Signal that emits when the backButton is clicked.
 

@@ -27,10 +27,10 @@ int getCity_index(const std::vector<city*>& cities, city* k);
 
 /**
  * \brief The distance table (adjacency matrix) class
- * The distanceTable_class class has one private data member:
- * vec  :   vector<vector<int>>.................A vector of vectors of ints that represent the distances between two cities.
- *
- * distanceTable_class provides an adjacency matrix that can retrieve city distances from. You can add, delete, or even set
+ */
+/*! The distanceTable_class class has one private data member:\n
+ * vec  :   vector<vector<int>>.................A vector of vectors of ints that represent the distances between two cities.\n\n
+ * distanceTable_class provides an adjacency matrix that can retrieve city distances from. You can add, delete, or even set\n
  * specific distances between two cities. Some functions rely on indeces rather than cities.
  */
 class distanceTable_class

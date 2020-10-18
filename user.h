@@ -9,11 +9,11 @@
 
 
 /**
- * \brief A user.
- * The "user" class has no private members:
- *
- * The user class has a name and a boolean isAdmin member.
- * If the user's isAdmin == true, then the user is considered
+ * \brief A struct that represents the user.
+ */
+/*! The "user" class has no private members.\n\n
+ * The user class has a name and a boolean isAdmin member.\n
+ * If the user's isAdmin == true, then the user is considered.\n
  * an administrator and gains administrator functionality within the program.
  */
 struct user
